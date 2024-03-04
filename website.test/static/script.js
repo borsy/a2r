@@ -141,6 +141,6 @@ document.getElementById('register').onclick = function () {
 document.getElementById('login').onclick = function () {
     categoryList.innerHTML = null;
 
-    form = "<form id='loginForm'><label for='newUsername'>Felhasználónév:</label><input type='email' id='email' name='email' required<label for='Password'>Jelszó:</label><input type='password' id='confirmPassword' name='confirmPassword' required<div class='privacy-container'><div><input type='checkbox' id='acceptPrivacyRegistration' name='acceptPrivacyRegistration' required><label for='acceptPrivacyRegistration'>Elfogadom az <a href='#' target='_blank'>adatvédelmi nyilatkozatot</a>.</div></label></div><button type='submit' class='loginButton'>Belépés</button></form>"
+    form = "<form id='loginForm'><label for='newUsername'>Felhasználónév:</label><input type='text' id='email' name='email' required<label for='Password'>Jelszó:</label><input type='password' id='confirmPassword' name='confirmPassword' required<div class='privacy-container'><div><input type='checkbox' id='acceptPrivacyRegistration' name='acceptPrivacyRegistration' required><label for='acceptPrivacyRegistration'>Elfogadom az <a href='#' target='_blank'>adatvédelmi nyilatkozatot</a>.</div></label></div><button type='submit' class='loginButton'>Belépés</button></form>"
     container.innerHTML = form;
 }
