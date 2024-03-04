@@ -141,6 +141,43 @@ hr {
     cursor: pointer;
 }
 
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    border-radius: 15px;
+    padding: 30px 15px 30px 15px;
+    background-color: rgb(240, 240, 240);
+    box-shadow: 5px 5px 50px 1px rgba(0, 0, 0, .2);
+}
+
+#loginForm .loginButton {
+    background-color: rgb(255, 50, 50);
+    color: white;
+    border-radius: 15px;
+    border: 0;
+    padding: 10px 0 10px 0;
+    font-size: 12pt;
+    font-weight: 800;
+
+    margin-top: 20px;
+}
+
+#loginForm .loginButton:hover {
+    background-color: rgb(240, 50, 50);
+}
+
+#loginForm input {
+    height: 20px;
+    border: 0;
+    border-radius: 2px;
+}
+
+#loginnForm input:focus {
+    outline: 3px solid rgb(255, 50, 50);
+}
+
 #registrationForm {
     display: flex;
     flex-direction: column;

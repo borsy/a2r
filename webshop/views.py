@@ -30,7 +30,7 @@ Ez a kódrészlet két API nézetet definiál, amelyek a Category és Product mo
 
 """
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 
 from .serializers import ProductSerializer, CategorySerializer
@@ -53,16 +53,3 @@ def getCategories(request):
     categories = Category.objects.all()
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
-
-def index_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('success_page')  # Ide írd be a sikeres bejelentkezés utáni oldal nevét
-        else:
-            # Hibaüzenet vagy más kezelés, ha a bejelentkezés nem sikerült
-
-    return render(request, 'index.html')
