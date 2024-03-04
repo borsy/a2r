@@ -1,3 +1,73 @@
+/*
+
+M A GY A R Á Z A T
+
+
+Ez a JavaScript kód egy egyszerű weboldal interaktivitását kezeli. Hadd magyarázzam el a kódot részleteiben:
+
+Elemek kiválasztása:
+
+javascript
+Copy code
+let webshopButton = document.getElementById('webshop-button');
+let aboutButton = document.getElementById('about-button');
+let contractButton = document.getElementById('contract-button');
+let categoryList = document.getElementById('category-list');
+let container = document.getElementById('container');
+Ezek a sorok kiválasztják a HTML dokumentumban található gombokat, listát és tartalomtárolót a hozzájuk tartozó azonosítóik (ID-k) alapján.
+
+Állandó változó beállítása:
+
+javascript
+Copy code
+const URL = 'http://127.0.0.1:8000';
+Egy állandó változó definiálása, amely egy API címet tartalmaz. Ezt az URL-t későbbi hívásokban használják fel.
+
+Webshop gomb eseménykezelője:
+
+javascript
+Copy code
+webshopButton.onclick = function() {
+    // fetch hívás az API /categories végpontjára
+    // Az eredmény JSON formátumban érkezik vissza
+    // A visszakapott adatokat felhasználja a kategóriák listájának feltöltéséhez
+};
+Amikor a "webshop" gombra kattintanak, egy fetch hívás történik az API /categories végpontjára, majd a válasz alapján a kategóriák listája frissül a weboldalon.
+
+Kategória kiválasztása eseménykezelő:
+
+javascript
+Copy code
+function categoryClicked(category) {
+    // fetch hívás az API /category/{category} végpontjára
+    // Az eredmény JSON formátumban érkezik vissza
+    // A visszakapott adatokat felhasználja a termékek listájának feltöltéséhez
+}
+Amikor egy kategóriára kattintanak, egy új fetch hívás történik az API /category/{category} végpontjára, majd a válasz alapján a termékek listája frissül a weboldalon.
+
+Szerződés gomb eseménykezelője:
+
+javascript
+Copy code
+contractButton.onclick = function() {
+    // A kategóriák listáját és a tartalomtárolót üríti, majd egy Lorem Ipsum szöveget jelenít meg
+};
+Amikor a "contract" gombra kattintanak, az oldalon lévő kategóriák listáját és tartalomtárolóját törli, majd egy Lorem Ipsum szöveget helyez el a tartalomtárolóban.
+
+Regisztrációs gomb eseménykezelője:
+
+javascript
+Copy code
+document.getElementById('register').onclick = function () {
+    // A kategóriák listáját törli, majd egy űrlapot jelenít meg a tartalomtárolóban a regisztrációhoz
+};
+Amikor a "register" gombra kattintanak, az oldalon lévő kategóriák listáját törli, majd egy űrlapot jelenít meg a tartalomtárolóban a regisztrációhoz.
+
+Ez a kód egy egyszerű weboldal interakcióját vezérli, ahol a felhasználók kategóriákat választhatnak, megtekinthetik a kategóriához tartozó termékeket, regisztrálhatnak, és egyéb funkciókat használhatnak.
+
+*/
+
+
 let webshopButton = document.getElementById('webshop-button');
 let aboutButton = document.getElementById('about-button');
 let contractButton = document.getElementById('contract-button');

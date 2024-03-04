@@ -1,3 +1,55 @@
+<!--
+
+M A GY A R Á Z A T
+
+
+Ez egy egyszerű HTML oldal kódja, amely egy webshopot reprezentál. Hadd magyarázzam el az egyes részeket:
+
+<!DOCTYPE html>: A dokumentum típusát jelzi, HTML5 típusú dokumentumról van szó.
+
+<html lang="hu">: Az oldal HTML gyökéreleme, a lang attribútum beállítja az oldal nyelvét, itt magyar (hu).
+
+<head>: Az oldal fejrésze, ahol a metaadatok és linkek találhatók.
+
+<meta charset="UTF-8">: Beállítja a karakterkódolást UTF-8-ra, ami a legelterjedtebb és sok karakterkészletet támogató kódolás.
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">: A responsive design-hoz szükséges meta tag, amely beállítja a nézetportot, hogy a böngésző helyesen skálázza az oldalt a különböző eszközökön.
+
+<link rel="stylesheet" href="static/style.css">: A CSS fájl elérési útját jelzi, amely a stílusokat definiálja az oldal számára.
+
+<title>A2R Webshop</title>: Az oldal címe, amely megjelenik a böngésző fülén vagy a könyvjelzőkben.
+
+<body>: Az oldal tartalmát tartalmazza.
+
+<div class="navigation">: Egy navigációs konténer, amely tartalmazza az oldal címét, bejelentkezés és regisztráció lehetőségeit, egy vízszintes vonalat, valamint a webshop, rólunk és ÁFSZ (Általános Felhasználási Szerződés) gombokat.
+
+<div class="logo">A<div>2</div>R Webshop</div>: A webshop logóját tartalmazó rész. Az "A2R" szöveg egy külön elemként van kezelve.
+
+<div class="logreg">: Bejelentkezés és regisztráció gombjait tartalmazó rész.
+
+<div id="login">Belépés</div>: A belépés gomb.
+
+<div id="register">Regisztráció</div>: A regisztráció gomb.
+
+<hr>: Egy vízszintes vonal, amely elkülöníti a fejlécet a navigációs gomboktól.
+
+<ul class="navigation-list">: Egy listaelemekből álló navigációs lista, amely tartalmazza a Webshop, Rólunk és ÁFSZ gombokat.
+
+<li id="webshop-button">Webshop</li>: A Webshop gomb.
+
+<li id="about-button">Rólunk</li>: A Rólunk gomb.
+
+<li id="contract-button">ÁFSZ</li>: Az ÁFSZ gomb.
+
+<ul id="category-list"></ul>: Egy üres lista, amely később a webshop kategóriáit fogja tartalmazni.
+
+<div id="container"></div>: Egy tartalomtároló, ahol dinamikusan frissül a weboldal tartalma a JavaScript kód alapján.
+
+<script src="static/script.js"></script>: A JavaScript fájl elérési útja, amely a weboldal interaktivitását kezeli, és a </body> záró tag előtt található, így a dokumentum többi része előbb betöltődik.
+
+-->
+
+
 <!DOCTYPE html>
     <html lang="hu">
     <head>
@@ -27,4 +79,3 @@
     </body>
     <script src="static/script.js"></script>
 </html>
-
