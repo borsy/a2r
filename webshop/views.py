@@ -45,6 +45,8 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
 
+from django.contrib.auth import logout
+
 # Create your views here.
 
 
@@ -103,3 +105,10 @@ def check_login_status(request):
     logged_in = request.user.is_authenticated
     
     return JsonResponse({'logged_in': logged_in})
+
+def logout_view(request):
+    try:
+        logout(request)
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})

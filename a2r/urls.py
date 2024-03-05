@@ -59,6 +59,8 @@ from webshop.views import get_csrf_token
 
 from webshop.views import check_login_status
 
+from webshop.views import logout_view
+
 def index(request):
     return render(request, 'index.html')
 
@@ -71,5 +73,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('get-csrf-token/', get_csrf_token, name='get_csrf_token'),
     path('categories-authenticated/', get_categories_authenticated, name='get_categories_authenticated'),
-    path('check_login_status/', check_login_status, name='check_login_status')
+    path('check_login_status/', check_login_status, name='check_login_status'),
+    path('logout/', logout_view, name='logout')
 ]
