@@ -78,16 +78,32 @@ let container = document.getElementById('container');
 const URL = 'http://127.0.0.1:8000'
 
 webshopButton.onclick = function() {
-    fetch(URL + '/categories')
+    // Ellenőrizzük, hogy be van-e jelentkezve a felhasználó
+    fetch(URL + '/check_login_status')
     .then(res => res.json())
     .then(data => {
-        let categoryList = document.getElementById('category-list');
-        categoryList.innerHTML = null;
-        for (let i = 0; i < data.length; i++) {
-            let li = document.createElement('li');
-            li.textContent = data[i].name;
-            li.onclick = function() {categoryClicked(data[i].name)};
-            categoryList.appendChild(li);
+        if (data.logged_in) {
+            // Ha be van jelentkezve, akkor lekérjük a kategóriákat
+            fetch(URL + '/categories-authenticated/')  // A módosított végpont neve
+            .then(res => res.json())
+            .then(data => {
+                let categoryList = document.getElementById('category-list');
+                categoryList.innerHTML = null;
+                for (let i = 0; i < data.length; i++) {
+                    let li = document.createElement('li');
+                    li.textContent = data[i].name;
+                    li.onclick = function() {categoryClicked(data[i].name)};
+                    categoryList.appendChild(li);
+                }
+
+                // Hívjuk meg az alapértelmezett kategóriát is
+                if (data.length > 0) {
+                    categoryClicked(data[0].name);
+                }
+            });
+        } else {
+            // Ha nincs bejelentkezve, akkor megfelelő üzenetet jelenítünk meg vagy átirányítjuk a bejelentkezési oldalra
+            container.innerHTML = 'Csak bejelentkezett felhasználóknak elérhető a webshop. Kérem, jelentkezzen be.';
         }
     });
 };
@@ -139,8 +155,23 @@ document.getElementById('register').onclick = function () {
 }
 
 document.getElementById('login').onclick = function () {
-    categoryList.innerHTML = null;
+    // AJAX kérés a CSRF token lekérdezéséhez
+    fetch('/get-csrf-token/')
+    .then(response => response.json())
+    .then(data => {
+        // CSRF token érték lementése
+        const csrfToken = data.csrf_token;
 
-    form = "<form id='loginForm'><label for='newUsername'>Felhasználónév:</label><input type='text' id='email' name='email' required<label for='Password'>Jelszó:</label><input type='password' id='confirmPassword' name='confirmPassword' required<div class='privacy-container'><div><input type='checkbox' id='acceptPrivacyRegistration' name='acceptPrivacyRegistration' required><label for='acceptPrivacyRegistration'>Elfogadom az <a href='#' target='_blank'>adatvédelmi nyilatkozatot</a>.</div></label></div><button type='submit' class='loginButton'>Belépés</button></form>"
-    container.innerHTML = form;
+        // Form létrehozása a CSRF token értékével
+        form = "<form id='loginForm' action='/login/' method='post'>";
+        form += "<input type='hidden' name='csrfmiddlewaretoken' value='" + csrfToken + "'>";
+        form += "<label for='email'>Felhasználónév:</label><input type='text' id='email' name='username' required></br>";  // A felhasználónév mező neve 'username'
+        form += "<label for='password'>Jelszó:</label><input type='password' id='password' name='password' required></br>";  // Jelszó mező neve 'password'
+        form += "<div class='privacy-container'><div><input type='checkbox' id='acceptPrivacyRegistration' name='acceptPrivacyRegistration' required>";
+        form += "<label for='acceptPrivacyRegistration'>Elfogadom az <a href='#' target='_blank'>adatvédelmi nyilatkozatot</a>.</label></div></div>";
+        form += "<button type='submit' class='loginButton'>Belépés</button></form>";
+
+        // Form megjelenítése
+        container.innerHTML = form;
+    });
 }

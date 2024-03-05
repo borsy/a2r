@@ -51,6 +51,13 @@ from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render
 from webshop.views import getProductsByCategory, getCategories
+from webshop.views import index_view
+from django.contrib.auth.views import LoginView
+from webshop.views import get_categories_authenticated
+
+from webshop.views import get_csrf_token
+
+from webshop.views import check_login_status
 
 def index(request):
     return render(request, 'index.html')
@@ -58,7 +65,11 @@ def index(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
     path('category/<str:category>', getProductsByCategory),
-    path('categories/', getCategories)
+    path('categories/', getCategories),
+    path('', index_view, name='index'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('get-csrf-token/', get_csrf_token, name='get_csrf_token'),
+    path('categories-authenticated/', get_categories_authenticated, name='get_categories_authenticated'),
+    path('check_login_status/', check_login_status, name='check_login_status')
 ]
