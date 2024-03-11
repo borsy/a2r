@@ -108,7 +108,7 @@ ROOT_URLCONF = 'a2r.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'website.test/templates'],
+        'DIRS': [BASE_DIR / 'website/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -172,7 +172,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'website.test/static/'
+    BASE_DIR / 'website/static/'
 ]
 
 # Default primary key field type

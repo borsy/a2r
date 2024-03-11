@@ -95,3 +95,19 @@ def logout_req(request):
     else:
         return JsonResponse({'success': True, 'error': 'Nincs bejelentkezve!'})
     
+def login_req(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('success_page')  # Ide írd be a sikeres bejelentkezés utáni oldal nevét
+            else:
+                return JsonResponse({'success': False, 'message': 'Nincs jogosultsága a bejelentkezéshez!'})
+        else:
+            return JsonResponse({'succes': False, 'message': 'Nincs ilyen felhasználó!'})
+    else:
+        return JsonResponse({'succes': False, 'message': 'Valamilyen hiba történt!'})

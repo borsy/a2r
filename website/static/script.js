@@ -6,6 +6,8 @@ let categoryList = document.getElementById('category-list');
 
 let container = document.getElementById('container');
 
+let redirect = 'main';
+
 const URL = 'http://127.0.0.1:8000';
 
 window.onload = function () {
@@ -23,6 +25,7 @@ window.onload = function () {
 };
 
 webshopButton.onclick = function() {
+    redirect = 'webshop';
     fetch(URL + '/categories')  // A módosított végpont neve
         .then(res => res.json())
         .then(data => {
@@ -45,6 +48,7 @@ webshopButton.onclick = function() {
 };
 
 function categoryClicked(category) {
+    redirect = `webshop/${category.id}`;
     fetch(URL + '/category/' + category)
     .then(res => res.json())
     .then(data => {
@@ -110,7 +114,7 @@ document.getElementById('login-button').onclick = function() {
         const csrfToken = data.csrf_token;
 
         // Form létrehozása a CSRF token értékével
-        form = "<form id='loginForm' action='/login/' method='post'>";
+        form = "<form id='loginForm' action='/login/' method='POST'>";
         form += "<input type='hidden' name='csrfmiddlewaretoken' value='" + csrfToken + "'>";
         form += "<label for='email'>Felhasználónév:</label><input type='text' id='email' name='username' required></br>";
         form += "<label for='password'>Jelszó:</label><input type='password' id='password' name='password' required></br>";

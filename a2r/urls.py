@@ -58,13 +58,12 @@ import webshop.views as web
 def index(request):
     return render(request, 'index.html')
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('category/<str:category>', web.getProductsByCategory),
     path('categories/', web.getCategories),
     path('', web.index_view, name='index'),
-    path('login/', LoginView.as_view(), name='login'),
+    path('login/', web.login_req, name='login'),
     path('get-csrf-token/', web.get_csrf_token, name='get_csrf_token'),
     path('authenticated/', web.authenticated, name='authenticated'),
     path('logout/', web.logout_req, name='logout')

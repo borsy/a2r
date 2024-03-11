@@ -2,7 +2,7 @@
 // A leírásban a csillagok (*) azok mutatnak az ugyan annyi csillag felé. Tehát a ** mutat a következő sorokban lévő **-ra!!!
 // Állítsd be ezt true-ra, ha látni akarod a pontos adatokat console-ban!
 
-let debug = true;
+let debug = false;
 
 /* Lekérjük a container ID-s div-et */
 let cointainer = document.getElementById("cointainer");
@@ -106,4 +106,44 @@ function draw(thisCard, timePassed) {
 function drawBack(thisCard, index) {
     thisCard.style.boxShadow = `0px 0px ${index}px 0px rgba(0,0,0, .5)`;
     if (debug) { console.log(`DEBUG | boxShadow beállítva: ${thisCard.style.boxShadow}`); }
+}
+
+function appearContainer() {
+    function containerOpacity(opacity) {
+        document.getElementById('container').style.opacity = opacity;
+        console.log(opacity);
+    }
+    let start = Date.now();
+    let timer = setInterval(function() {
+        let timePassed = Date.now() - start;
+        if (timePassed >= 110) {
+            clearInterval(timer);
+            return;
+        }
+        if (timePassed < 100) {
+            let opacity = timePassed / 100;
+            containerOpacity(opacity);
+        }
+    }, 1);
+}
+
+function hideContainer() {
+    function containerOpacity(opacity) {
+        document.getElementById('container').style.opacity = opacity;
+        console.log(opacity);
+    }
+    let index = 100;
+    let start = Date.now();
+    let timer = setInterval(function() {
+        let timePassed = Date.now() - start;
+        if (timePassed >= 110) {
+            clearInterval(timer);
+            return;
+        }
+        if (index > 0) {
+            let opacity = index / 100;
+            containerOpacity(opacity);
+        }
+        index--;
+    }, 1);  
 }
