@@ -30,7 +30,7 @@ Ez a kódrészlet két API nézetet definiál, amelyek a Category és Product mo
 
 """
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
@@ -50,17 +50,6 @@ from django.contrib.auth import logout
 # Create your views here.
 
 
-@login_required
-def get_categories_authenticated(request):
-    try:
-        # Lekérdezzük az összes kategóriát az adatbázisból
-        categories = list(Category.objects.values('name'))
-
-        return JsonResponse(categories, safe=False)
-    except Exception as e:
-        print(f"Hiba a kategóriák lekérdezése során: {e}")
-        return JsonResponse({'error': 'Hiba a kategóriák lekérdezése során.'}, status=500)
-
 @api_view(['GET'])
 def getProductsByCategory(request, category):
     prodCat = Category.objects.all().get(name=category)
@@ -73,10 +62,6 @@ def getCategories(request):
     categories = Category.objects.all()
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
-
-def index_view(request):
-    return render(request, 'index.html')
-
 
 def index_view(request):
     if request.method == 'POST':
@@ -92,23 +77,21 @@ def index_view(request):
                 messages.error(request, 'A felhasználó letiltva.')
         else:
             messages.error(request, 'Hibás felhasználónév vagy jelszó.')
-
     return render(request, 'index.html')
 
 def get_csrf_token(request):
-    token = get_token(request)
-    return JsonResponse({'csrf_token': token})
+    return JsonResponse({'csrf_token': get_token(request)})
 
-def check_login_status(request):
-    # Itt valamilyen logika szerint ellenőrizd a bejelentkezési állapotot
-    # Például:
-    logged_in = request.user.is_authenticated
-    
-    return JsonResponse({'logged_in': logged_in})
+def authenticated(request):
+    return JsonResponse({'logged_in': request.user.is_authenticated})
 
-def logout_view(request):
-    try:
+def logout_req(request):
+    if request.user.is_authenticated:
         logout(request)
-        return JsonResponse({'success': True})
-    except Exception as e:
-        return JsonResponse({'success': False, 'error': str(e)})
+        if not request.user.is_authenticated:
+            return JsonResponse({'success': True, 'message': 'Sikeres kijelentkezés!'})
+        else:
+            return JsonResponse({'success': False, 'message': 'Valami hiba történt a kijelentkezés során!'})
+    else:
+        return JsonResponse({'success': True, 'error': 'Nincs bejelentkezve!'})
+    

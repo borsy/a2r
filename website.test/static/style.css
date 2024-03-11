@@ -62,6 +62,10 @@ hr {
     background-color: rgb(240, 50, 50);
 }
 
+.logreg div:hover {
+    background-color: rgb(240, 50, 50);
+}
+
 #category-list {
     list-style: none;
     margin: 0;
@@ -111,11 +115,6 @@ hr {
 
     width: 250px;
     height: 300px;
-}
-
-.product-card:hover {
-    animation: cardAnim;
-    animation-duration: .5s;
 }
 
 .product-name {
@@ -213,10 +212,4 @@ hr {
 
 #registrationForm input:focus {
     outline: 3px solid rgb(255, 50, 50);
-}
-
-@keyframes cardAnim {
-    to {
-        box-shadow: 5px 5px 50px 1px rgba(0, 0, 0,.2);
-    }
 }

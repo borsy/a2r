@@ -50,16 +50,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render
-from webshop.views import getProductsByCategory, getCategories
-from webshop.views import index_view
 from django.contrib.auth.views import LoginView
-from webshop.views import get_categories_authenticated
 
-from webshop.views import get_csrf_token
-
-from webshop.views import check_login_status
-
-from webshop.views import logout_view
+""" Be importáljuk a webshop applikáció view.py def részeit "web" néven. Azaz úgy tudjuk meghívni őket, hogy web.függvényNév ezzel leegyszerűsítve a behívásokat... """
+import webshop.views as web
 
 def index(request):
     return render(request, 'index.html')
@@ -67,12 +61,11 @@ def index(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('category/<str:category>', getProductsByCategory),
-    path('categories/', getCategories),
-    path('', index_view, name='index'),
+    path('category/<str:category>', web.getProductsByCategory),
+    path('categories/', web.getCategories),
+    path('', web.index_view, name='index'),
     path('login/', LoginView.as_view(), name='login'),
-    path('get-csrf-token/', get_csrf_token, name='get_csrf_token'),
-    path('categories-authenticated/', get_categories_authenticated, name='get_categories_authenticated'),
-    path('check_login_status/', check_login_status, name='check_login_status'),
-    path('logout/', logout_view, name='logout')
+    path('get-csrf-token/', web.get_csrf_token, name='get_csrf_token'),
+    path('authenticated/', web.authenticated, name='authenticated'),
+    path('logout/', web.logout_req, name='logout')
 ]
