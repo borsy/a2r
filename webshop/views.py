@@ -33,6 +33,7 @@ Ez a kódrészlet két API nézetet definiál, amelyek a Category és Product mo
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import requires_csrf_token
 
 from .serializers import ProductSerializer, CategorySerializer
 from .models import Product, Category
@@ -94,7 +95,9 @@ def logout_req(request):
             return JsonResponse({'success': False, 'message': 'Valami hiba történt a kijelentkezés során!'})
     else:
         return JsonResponse({'success': True, 'error': 'Nincs bejelentkezve!'})
-    
+
+@api_view(['POST'])
+@requires_csrf_token
 def login_req(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -104,10 +107,8 @@ def login_req(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect('success_page')  # Ide írd be a sikeres bejelentkezés utáni oldal nevét
+                return redirect('index')
             else:
-                return JsonResponse({'success': False, 'message': 'Nincs jogosultsága a bejelentkezéshez!'})
+                return redirect('index')
         else:
-            return JsonResponse({'succes': False, 'message': 'Nincs ilyen felhasználó!'})
-    else:
-        return JsonResponse({'succes': False, 'message': 'Valamilyen hiba történt!'})
+            return redirect('index')

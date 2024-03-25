@@ -8,23 +8,34 @@ let container = document.getElementById('container');
 
 let redirect = 'main';
 
+let authenticated = false;
+
 const URL = 'http://127.0.0.1:8000';
 
 window.onload = function () {
+    fetch(URL + '/get-csrf-token')
+        .then(res => res.json())
+        .then(data => {
+            document.cookie = data.csrf_token;
+    });
     fetch(URL + '/authenticated')
         .then(res => res.json())
         .then(data => {
             if (data.logged_in) {
                 document.getElementById('login-button').style.display = 'none';
                 document.getElementById('logout-button').style.display = 'block';
+                document.getElementById('message').style.display = 'block';
+                authenticated = true;
             } else {
+                document.getElementById('message').style.display = 'none';
                 document.getElementById('login-button').style.display = 'block';
                 document.getElementById('logout-button').style.display = 'none';
             }
         });
 };
+webshopButton.onclick = function() {webshopClicked();};
 
-webshopButton.onclick = function() {
+function webshopClicked() {
     redirect = 'webshop';
     fetch(URL + '/categories')  // A módosított végpont neve
         .then(res => res.json())
@@ -60,20 +71,25 @@ function categoryClicked(category) {
             let name = document.createElement('div');
             let price = document.createElement('div');
             let description = document.createElement('div');
+            let button = document.createElement('div');
 
             name.className = 'product-name';
             price.className = 'product-price';
             description.className = 'product-description';
+            button.className = 'product-button';
             name.textContent = data[i].name;
             price.textContent = parseInt(data[i].price) + ' Ft';
             description.textContent = data[i].description;
+            button.textContent = 'Kosárba';
+            button.setAttribute('id', data[i].id)
 
             card.appendChild(name);
             card.appendChild(price);
             card.appendChild(description);
+            card.appendChild(button);
             container.appendChild(card);
         }
-        loadAnimation();
+        //loadAnimation();
     });
 }
 
@@ -106,34 +122,66 @@ document.getElementById('register').onclick = function() {
 }
 
 document.getElementById('login-button').onclick = function() {
-    // AJAX kérés a CSRF token lekérdezéséhez
+    categoryList.innerHTML = null;
     fetch('/get-csrf-token/')
-    .then(response => response.json())
-    .then(data => {
-        // CSRF token érték lementése
-        const csrfToken = data.csrf_token;
+        .then(response => response.json())
+        .then(data => {
+            const csrfToken = data.csrf_token;
 
-        // Form létrehozása a CSRF token értékével
-        form = "<form id='loginForm' action='/login/' method='POST'>";
-        form += "<input type='hidden' name='csrfmiddlewaretoken' value='" + csrfToken + "'>";
-        form += "<label for='email'>Felhasználónév:</label><input type='text' id='email' name='username' required></br>";
-        form += "<label for='password'>Jelszó:</label><input type='password' id='password' name='password' required></br>";
-        form += "<div class='privacy-container'><div><input type='checkbox' id='acceptPrivacyRegistration' name='acceptPrivacyRegistration' required>";
-        form += "<label for='acceptPrivacyRegistration'>Elfogadom az <a href='#' target='_blank'>adatvédelmi nyilatkozatot</a>.</label></div></div>";
-        form += "<button type='submit' class='loginButton'>Belépés</button></form>";
+            form = "<form id='loginForm' action='/login/' method='POST'>";
+            form += `<input type='hidden' name='csrfmiddlewaretoken' value='${csrfToken}'>`;
+            form += "<label for='email'>Felhasználónév:</label><input type='text' id='email' name='username' required></br>";
+            form += "<label for='password'>Jelszó:</label><input type='password' id='password' name='password' required></br>";
+            form += "<div class='privacy-container'><div><input type='checkbox' id='acceptPrivacyRegistration' name='acceptPrivacyRegistration' required>";
+            form += "<label for='acceptPrivacyRegistration'>Elfogadom az <a href='#' target='_blank'>adatvédelmi nyilatkozatot</a>.</label></div></div>";
+            form += "<button type='submit' class='loginButton'>Belépés</button></form>";
 
-        // Form megjelenítése
-        container.innerHTML = form;
-    });
+            container.innerHTML = form;
+        })
 }
 
 document.getElementById('logout-button').onclick = function() {
+    categoryList.innerHTML = null;
     fetch(URL + '/logout')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 document.getElementById('logout-button').style.display = 'none';
                 document.getElementById('login-button').style.display = 'block';
+                messageBox("Üzenet", "Sikeres kijelentkezés!", "OK");
+                document.getElementById('message').style.display = 'none';
             }
-        });
+        })
+}
+
+document.getElementsByClassName('product-card').forEach(element => {
+    element.onclick = () => {
+        console.log(element);
+    }
+});
+
+
+function messageBox(title, message, button) {
+    let messageBox = document.createElement('div');
+    messageBox.className ='messagebox';
+    let messageBoxContent = document.createElement('div');
+    messageBoxContent.className ='messagebox-content';
+    let messageBoxHeader = document.createElement('div');
+    messageBoxHeader.className ='messagebox-header';
+    messageBoxHeader.innerHTML = title;
+    messageBoxContent.appendChild(messageBoxHeader);
+    let messageBoxText = document.createElement('div');
+    messageBoxText.className ='messagebox-text';
+    messageBoxText.innerHTML = message;
+    messageBoxContent.appendChild(messageBoxText);
+    let messageBoxButton = document.createElement('div');
+    messageBoxButton.className ='messagebox-button';
+    messageBoxButton.innerHTML = button;
+    messageBoxContent.appendChild(messageBoxButton);
+    messageBox.appendChild(messageBoxContent);
+    document.body.appendChild(messageBox);
+
+    messageBoxButton.onclick = () => {
+        document.body.removeChild(messageBox);
+    }
 }

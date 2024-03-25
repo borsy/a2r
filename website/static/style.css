@@ -7,6 +7,17 @@ body {
     font-family: sans-serif;
 }
 
+#message {
+    width: 100vw;
+    text-align: right;
+}
+
+.main-con {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
 .navigation {
     background-color: white;
 
@@ -16,6 +27,10 @@ body {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .logo {
@@ -59,11 +74,69 @@ hr {
 }
 
 .navigation-list li:hover {
-    background-color: rgb(240, 50, 50);
+    background-color: rgb(200, 50, 50);
 }
 
-.logreg div:hover {
-    background-color: rgb(240, 50, 50);
+.logreg {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: end;
+    margin-right: 20px;
+}
+
+.logreg div:nth-child(1), .logreg div:nth-child(2), .logreg div:nth-child(3) {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(255, 50, 50);
+    color: white;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: background-color .5s;
+}
+
+.logreg div:nth-child(1):hover, .logreg div:nth-child(2):hover, .logreg div:nth-child(3):hover {
+    background-color: rgb(200, 50, 50);
+}
+
+.cart {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    transition: all .5s;
+}
+
+.cart>img {
+    position: absolute;
+
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
+    z-index: 1;
+}
+
+.cart:hover {
+    scale: 1.1;
+}
+
+.cart>div {
+    position: absolute;
+    
+    width: 10px;
+    height: 10px;
+    background-color: rgb(255, 50, 50);
+    border-radius: 50%;
+
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+
+    text-align: center;
+    line-height: 10px;
 }
 
 #category-list {
@@ -79,7 +152,7 @@ hr {
 
 #category-list li {
     background-color: rgb(255, 50, 50);
-    color: black;
+    color: white;
     font-weight: 800;
     font-size: 10pt;
 
@@ -90,7 +163,7 @@ hr {
 }
 
 #category-list li:hover {
-    background-color: rgb(240, 50, 50);
+    background-color: rgb(200, 50, 50);
 }
 
 #container {
@@ -106,6 +179,7 @@ hr {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    justify-content: space-between;
     gap: 10px;
 
     background-color: rgb(240, 240, 240);
@@ -115,6 +189,12 @@ hr {
 
     width: 250px;
     height: 300px;
+
+    transition: box-shadow .5s;
+}
+
+.product-card:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .4);
 }
 
 .product-name {
@@ -122,14 +202,7 @@ hr {
     white-space: pre-wrap;
 }
 
-.logreg {
-    display: flex;
-    gap: 10px;
-    justify-content: end;
-    margin-right: 20px;
-}
-
-.logreg div {
+.product-button {
     padding: 5px;
     border-radius: 10px;
     background-color: rgb(255, 50, 50);
@@ -138,6 +211,12 @@ hr {
     font-weight: 800;
 
     cursor: pointer;
+
+    transition: background-color .2s;
+}
+
+.product-button:hover {
+    background-color: rgb(200, 50, 50);
 }
 
 #loginForm {
@@ -164,7 +243,7 @@ hr {
 }
 
 #loginForm .loginButton:hover {
-    background-color: rgb(240, 50, 50);
+    background-color: rgb(200, 50, 50);
 }
 
 #loginForm input {
@@ -201,7 +280,7 @@ hr {
 }
 
 #registrationForm .registButton:hover {
-    background-color: rgb(240, 50, 50);
+    background-color: rgb(200, 50, 50);
 }
 
 #registrationForm input {
@@ -212,4 +291,54 @@ hr {
 
 #registrationForm input:focus {
     outline: 3px solid rgb(255, 50, 50);
+}
+
+.messagebox {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.messagebox-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    
+    width: 250px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+}
+
+.messagebox-header {
+    background-color: red;
+    border-radius: 10px 10px 5px 5px;
+    color: white;
+    font-weight: 800;
+    padding: 10px 5px 10px 5px;
+}
+
+.messagebox-text {
+    padding: 10px;
+}
+
+.messagebox-button {
+    background-color: red;
+    color: white;
+    width: 50px;
+    border-radius: 10px;
+    font-weight: 800;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.messagebox-button:hover {
+    background-color: rgb(200, 0, 0);
 }
