@@ -71,6 +71,7 @@ hr {
     border-radius: 10px;
 
     cursor: pointer;
+    transition: all .5s;
 }
 
 .navigation-list li:hover {
@@ -102,14 +103,18 @@ hr {
     background-color: rgb(200, 50, 50);
 }
 
-.cart {
+#cart {
     position: relative;
     width: 40px;
     height: 40px;
     transition: all .5s;
 }
 
-.cart>img {
+#cart:hover {
+    transform: scale(1.1)
+}
+
+#cart>img {
     position: absolute;
 
     width: 40px;
@@ -119,11 +124,7 @@ hr {
     z-index: 1;
 }
 
-.cart:hover {
-    scale: 1.1;
-}
-
-.cart>div {
+#cart>div {
     position: absolute;
     
     width: 10px;
@@ -135,8 +136,10 @@ hr {
     left: 20px;
     z-index: 2;
 
+    margin: 0 auto 0 auto;
     text-align: center;
     line-height: 10px;
+    font-size: 7pt;
 }
 
 #category-list {
@@ -160,6 +163,8 @@ hr {
     border-radius: 10px;
 
     cursor: pointer;
+
+    transition: background-color .5s;
 }
 
 #category-list li:hover {
@@ -167,12 +172,13 @@ hr {
 }
 
 #container {
-    width: 100%;
+    width: 80vw;
     display: flex;
     flex-direction: row;
     gap: 50px;
     flex-wrap: wrap;
     justify-content: center;
+    margin: auto;
 }
 
 .product-card {
@@ -341,4 +347,76 @@ hr {
 
 .messagebox-button:hover {
     background-color: rgb(200, 0, 0);
+}
+
+#cart-container {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+    width: 80vw;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px 0;
+}
+
+
+.cart-card {
+    display: grid;
+    grid-template-columns: 1fr .5fr .1fr;
+    margin: 20px 50px 10px 50px;
+}
+
+.delete-cart-button {
+    background: rgb(255, 50, 50);
+    padding: 5px;
+    margin: -5px;
+    font-weight: 800;
+    font-size: 10pt;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+
+    transition: background-color .5s;
+}
+
+.delete-cart-button:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+hr {
+    border: 2px solid rgb(255, 50, 50);
+    width: 90%;
+    border-radius: 20px;
+    margin: 30px auto 30px auto;
+}
+
+#cart-overall {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 50px 20px 50px;
+}
+
+#buy-cart-button {
+    background-color: rgb(255, 50, 50);
+    padding: 5px;
+    margin: -5px;
+    font-weight: 800;
+    font-size: 10pt;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+
+    transition: background-color .5s;
+}
+
+#buy-cart-button:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100vw;
+    }
 }

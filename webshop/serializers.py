@@ -194,7 +194,7 @@ Kép: [érvénytelen URL eltávolítva]
 
 """
 
-from .models import Product, Category
+from .models import Product, Category, Cart
 from rest_framework.serializers import ModelSerializer
 
 class ProductSerializer(ModelSerializer):
@@ -208,3 +208,9 @@ class CategorySerializer(ModelSerializer):
         fields = '__all__'
         model = Category
         depth = 0
+
+class CartSerializer(ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = Cart
+        depth = 2

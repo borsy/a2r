@@ -66,5 +66,8 @@ urlpatterns = [
     path('login/', web.login_req, name='login'),
     path('get-csrf-token/', web.get_csrf_token, name='get_csrf_token'),
     path('authenticated/', web.authenticated, name='authenticated'),
-    path('logout/', web.logout_req, name='logout')
+    path('logout/', web.logout_req, name='logout'),
+    path('addcart/<int:item>', web.add_cart, name='add_cart'),
+    path('getcart/', web.get_cart, name='add_cart'),
+    path('removecart/<int:item>', web.remove_cart, name='remove_cart'),
 ]

@@ -35,8 +35,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import requires_csrf_token
 
-from .serializers import ProductSerializer, CategorySerializer
-from .models import Product, Category
+from .serializers import ProductSerializer, CategorySerializer, CartSerializer
+from .models import Product, Category, Cart
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -112,3 +112,25 @@ def login_req(request):
                 return redirect('index')
         else:
             return redirect('index')
+
+def add_cart(request, item):
+    if request.user.is_authenticated:
+        item = Product.objects.get(id=item)
+        Cart.objects.create(user=request.user, product=item)
+        return JsonResponse({"succes": True})
+    else: return JsonResponse({"succes": False})
+
+@api_view(['GET'])
+def get_cart(request):
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        serializer = CartSerializer(cart, many=True)
+        return Response(serializer.data)
+    else: return JsonResponse({"succes": False})
+    
+def remove_cart(request, item):
+    if request.user.is_authenticated:
+        item = Cart.objects.get(id=item)
+        item.delete()
+        return JsonResponse({"succes": True})
+    else: return JsonResponse({"succes": False})

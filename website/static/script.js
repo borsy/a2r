@@ -10,6 +10,8 @@ let redirect = 'main';
 
 let authenticated = false;
 
+let cartCount = 0;
+
 const URL = 'http://127.0.0.1:8000';
 
 window.onload = function () {
@@ -89,7 +91,7 @@ function categoryClicked(category) {
             card.appendChild(button);
             container.appendChild(card);
         }
-        //loadAnimation();
+        productCardsAddFunction();
     });
 }
 
@@ -137,6 +139,8 @@ document.getElementById('login-button').onclick = function() {
             form += "<button type='submit' class='loginButton'>Belépés</button></form>";
 
             container.innerHTML = form;
+
+            getCartItems();
         })
 }
 
@@ -146,20 +150,122 @@ document.getElementById('logout-button').onclick = function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                authenticated = false;
                 document.getElementById('logout-button').style.display = 'none';
                 document.getElementById('login-button').style.display = 'block';
                 messageBox("Üzenet", "Sikeres kijelentkezés!", "OK");
                 document.getElementById('message').style.display = 'none';
+                
+                cartCount = 0;
+                document.getElementById('cart-count').innerHTML = cartCount;
             }
         })
 }
 
-document.getElementsByClassName('product-card').forEach(element => {
-    element.onclick = () => {
-        console.log(element);
-    }
-});
+function productCardsAddFunction() {
+    let productCards = document.getElementsByClassName('product-card');
+    for (let i = 0;  i < productCards.length; i++) {
+        productCards[i].onclick = function() {
+            fetch(URL + '/addcart/' + productCards[i].getElementsByClassName('product-button')[0].getAttribute('id'))
+                .then(response => response.json())
+                .then(data => {
+                    if (data.succes) {
+                        cartCount += 1;
+                        document.getElementById('cart-count').innerHTML = cartCount;
+                    }
 
+                })
+        }
+    }
+}
+
+function getCartCount() {
+fetch(URL + '/authenticated')
+    .then(res => res.json())
+    .then(auth => {
+        if (auth.logged_in) {
+            fetch(URL + '/getcart')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success != false) {
+                        cartCount = data.length;
+                        document.getElementById('cart-count').innerHTML = cartCount;
+                    }
+                })
+            }
+        })
+    }
+getCartCount();
+
+document.getElementById('cart').onclick = function() {
+    fetch(URL + '/authenticated')
+    .then(res => res.json())
+    .then(auth => {
+        if (auth.logged_in) {
+            fetch(URL + '/getcart')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success != false) {
+                        document.getElementById('container').innerHTML = null;
+                        let cartContainer = document.createElement('div');
+                        cartContainer.id = 'cart-container';
+                        let cartOverall = document.createElement('div');
+                        cartOverall.id = 'cart-overall';
+                        let overallPrice = 0;
+                        for (let i = 0; i < data.length; i++) {
+                            let card = document.createElement('div');
+                            card.className = 'cart-card';
+
+                            let name = document.createElement('div');
+                            name.innerHTML = data[i].product.name;
+                            let price = document.createElement('div');
+                            overallPrice += parseInt(data[i].product.price);
+                            price.innerHTML = parseInt(data[i].product.price) + " Ft";
+                            let deleteButton = document.createElement('div');
+                            deleteButton.className = 'delete-cart-button';
+                            deleteButton.id = 'cart-' + data[i].id;
+                            deleteButton.innerHTML = "Törlés";
+
+                            card.appendChild(name);
+                            card.appendChild(price);
+                            card.appendChild(deleteButton);
+
+                            cartContainer.appendChild(card);
+                        }
+                        let overallPriceDiv = document.createElement('div');
+                        overallPriceDiv.innerHTML = "A rendelés végösszege: " + overallPrice + " Ft";
+                        let buyButton = document.createElement('div');
+                        buyButton.id = 'buy-cart-button';
+                        buyButton.innerHTML = "Megrendelés";
+                        cartOverall.appendChild(overallPriceDiv);
+                        cartOverall.appendChild(buyButton);
+                        let hr = document.createElement('hr');
+                        cartContainer.appendChild(hr);
+                        cartContainer.appendChild(cartOverall);
+                        document.getElementById('container').appendChild(cartContainer);
+                        cartItemsAddFunction();
+                    }
+                })
+        }
+    })
+}
+
+function cartItemsAddFunction() {
+    let cartItems = document.getElementsByClassName('cart-card');
+    for (let i = 0;  i < cartItems.length; i++) {
+        cartItems[i].onclick = function() {
+            fetch('/removecart/' + cartItems[i].getElementsByClassName('delete-cart-button')[0].id.replace('cart-', ''))
+                .then(response => response.json())
+                .then(data => {
+                    if (data.succes) {
+                        cartCount -= 1;
+                        document.getElementById('cart-count').innerHTML = cartCount;
+                        cartItems[i].remove();
+                    }
+                })
+        }
+    }
+}
 
 function messageBox(title, message, button) {
     let messageBox = document.createElement('div');
