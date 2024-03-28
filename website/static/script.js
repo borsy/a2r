@@ -15,12 +15,12 @@ let cartCount = 0;
 const URL = 'http://127.0.0.1:8000';
 
 window.onload = function () {
-    fetch(URL + '/get-csrf-token')
+    fetch('/get-csrf-token')
         .then(res => res.json())
         .then(data => {
             document.cookie = data.csrf_token;
     });
-    fetch(URL + '/authenticated')
+    fetch('/authenticated')
         .then(res => res.json())
         .then(data => {
             if (data.logged_in) {
@@ -39,7 +39,7 @@ webshopButton.onclick = function() {webshopClicked();};
 
 function webshopClicked() {
     redirect = 'webshop';
-    fetch(URL + '/categories')  // A módosított végpont neve
+    fetch('/categories')  // A módosított végpont neve
         .then(res => res.json())
         .then(data => {
             let categoryList = document.getElementById('category-list');
@@ -62,7 +62,7 @@ function webshopClicked() {
 
 function categoryClicked(category) {
     redirect = `webshop/${category.id}`;
-    fetch(URL + '/category/' + category)
+    fetch('/category/' + category)
     .then(res => res.json())
     .then(data => {
         container.innerHTML = null;
@@ -146,7 +146,7 @@ document.getElementById('login-button').onclick = function() {
 
 document.getElementById('logout-button').onclick = function() {
     categoryList.innerHTML = null;
-    fetch(URL + '/logout')
+    fetch('/logout')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -166,7 +166,7 @@ function productCardsAddFunction() {
     let productCards = document.getElementsByClassName('product-card');
     for (let i = 0;  i < productCards.length; i++) {
         productCards[i].onclick = function() {
-            fetch(URL + '/addcart/' + productCards[i].getElementsByClassName('product-button')[0].getAttribute('id'))
+            fetch('/addcart/' + productCards[i].getElementsByClassName('product-button')[0].getAttribute('id'))
                 .then(response => response.json())
                 .then(data => {
                     if (data.succes) {
@@ -180,11 +180,11 @@ function productCardsAddFunction() {
 }
 
 function getCartCount() {
-fetch(URL + '/authenticated')
+fetch('/authenticated')
     .then(res => res.json())
     .then(auth => {
         if (auth.logged_in) {
-            fetch(URL + '/getcart')
+            fetch('/getcart')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success != false) {
@@ -198,11 +198,11 @@ fetch(URL + '/authenticated')
 getCartCount();
 
 document.getElementById('cart').onclick = function() {
-    fetch(URL + '/authenticated')
+    fetch('/authenticated')
     .then(res => res.json())
     .then(auth => {
         if (auth.logged_in) {
-            fetch(URL + '/getcart')
+            fetch('/getcart')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success != false) {
