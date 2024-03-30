@@ -12,15 +12,15 @@ let authenticated = false;
 
 let cartCount = 0;
 
-const URL = 'http://127.0.0.1:8000';
+let overallPrice = 0;
 
 window.onload = function () {
-    fetch(URL + '/get-csrf-token')
+    fetch('/get-csrf-token')
         .then(res => res.json())
         .then(data => {
             document.cookie = data.csrf_token;
     });
-    fetch(URL + '/authenticated')
+    fetch('/authenticated')
         .then(res => res.json())
         .then(data => {
             if (data.logged_in) {
@@ -39,7 +39,7 @@ webshopButton.onclick = function() {webshopClicked();};
 
 function webshopClicked() {
     redirect = 'webshop';
-    fetch(URL + '/categories')  // A módosított végpont neve
+    fetch('/categories')  // A módosított végpont neve
         .then(res => res.json())
         .then(data => {
             let categoryList = document.getElementById('category-list');
@@ -49,49 +49,56 @@ function webshopClicked() {
                 li.textContent = data[i].name;
                 li.onclick = function () { categoryClicked(data[i].name) };
                 categoryList.appendChild(li);
-            }
 
+            }
             // Hívjuk meg az alapértelmezett kategóriát is
             if (data.length > 0) {
                 categoryClicked(data[0].name);
             }
-
             // Kijelentkezés gomb megjelenítése
         });
 };
 
 function categoryClicked(category) {
     redirect = `webshop/${category.id}`;
-    fetch(URL + '/category/' + category)
-    .then(res => res.json())
-    .then(data => {
-        container.innerHTML = null;
-        for (let i = 0; i < data.length; i++) {
-            let card = document.createElement('div');
-            card.className = 'product-card';
+    fetch('/category/' + category)
+        .then(res => res.json())
+        .then(data => {
+            container.innerHTML = null;
+            for (let i = 0; i < data.length; i++) {
+                let card = document.createElement('div');
+                card.className = 'product-card';
 
-            let name = document.createElement('div');
-            let price = document.createElement('div');
-            let description = document.createElement('div');
-            let button = document.createElement('div');
+                let name = document.createElement('div');
+                let price = document.createElement('div');
+                let description = document.createElement('div');
+                let button = document.createElement('div');
 
-            name.className = 'product-name';
-            price.className = 'product-price';
-            description.className = 'product-description';
-            button.className = 'product-button';
-            name.textContent = data[i].name;
-            price.textContent = parseInt(data[i].price) + ' Ft';
-            description.textContent = data[i].description;
-            button.textContent = 'Kosárba';
-            button.setAttribute('id', data[i].id)
+                name.className = 'product-name';
+                price.className = 'product-price';
+                description.className = 'product-description';
+                button.className = 'product-button';
+                name.textContent = data[i].name;
+                price.textContent = parseInt(data[i].price) + ' Ft';
+                description.textContent = data[i].description;
+                button.textContent = 'Kosárba';
+                button.setAttribute('id', data[i].id)
 
-            card.appendChild(name);
-            card.appendChild(price);
-            card.appendChild(description);
-            card.appendChild(button);
-            container.appendChild(card);
-        }
+                card.appendChild(name);
+                card.appendChild(price);
+                card.appendChild(description);
+                card.appendChild(button);
+                container.appendChild(card);
+            }
         productCardsAddFunction();
+        if (!authenticated) {
+            let prodBut = document.getElementsByClassName('product-button');
+            for (let i = 0; i < prodBut.length; i++) {
+                prodBut[i].style.backgroundColor = 'gray';
+                prodBut[i].style.pointerEvents = 'none';
+                prodBut[i].onclick = null;
+            }
+        }
     });
 }
 
@@ -146,7 +153,7 @@ document.getElementById('login-button').onclick = function() {
 
 document.getElementById('logout-button').onclick = function() {
     categoryList.innerHTML = null;
-    fetch(URL + '/logout')
+    fetch('/logout')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -158,6 +165,15 @@ document.getElementById('logout-button').onclick = function() {
                 
                 cartCount = 0;
                 document.getElementById('cart-count').innerHTML = cartCount;
+                
+                if (!authenticated) {
+                    let prodBut = document.getElementsByClassName('product-button');
+                    for (let i = 0; i < prodBut.length; i++) {
+                        prodBut[i].style.backgroundColor = 'gray';
+                        prodBut[i].style.pointerEvents = 'none';
+                        prodBut[i].onclick = null;
+                    }
+                }
             }
         })
 }
@@ -166,25 +182,24 @@ function productCardsAddFunction() {
     let productCards = document.getElementsByClassName('product-card');
     for (let i = 0;  i < productCards.length; i++) {
         productCards[i].onclick = function() {
-            fetch(URL + '/addcart/' + productCards[i].getElementsByClassName('product-button')[0].getAttribute('id'))
+            fetch('/addcart/' + productCards[i].getElementsByClassName('product-button')[0].getAttribute('id'))
                 .then(response => response.json())
                 .then(data => {
                     if (data.succes) {
                         cartCount += 1;
                         document.getElementById('cart-count').innerHTML = cartCount;
                     }
-
                 })
         }
     }
 }
 
 function getCartCount() {
-fetch(URL + '/authenticated')
+fetch('/authenticated')
     .then(res => res.json())
     .then(auth => {
         if (auth.logged_in) {
-            fetch(URL + '/getcart')
+            fetch('/getcart')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success != false) {
@@ -198,11 +213,11 @@ fetch(URL + '/authenticated')
 getCartCount();
 
 document.getElementById('cart').onclick = function() {
-    fetch(URL + '/authenticated')
+    fetch('/authenticated')
     .then(res => res.json())
     .then(auth => {
         if (auth.logged_in) {
-            fetch(URL + '/getcart')
+            fetch('/getcart')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success != false) {
@@ -211,7 +226,6 @@ document.getElementById('cart').onclick = function() {
                         cartContainer.id = 'cart-container';
                         let cartOverall = document.createElement('div');
                         cartOverall.id = 'cart-overall';
-                        let overallPrice = 0;
                         for (let i = 0; i < data.length; i++) {
                             let card = document.createElement('div');
                             card.className = 'cart-card';
@@ -244,6 +258,10 @@ document.getElementById('cart').onclick = function() {
                         cartContainer.appendChild(cartOverall);
                         document.getElementById('container').appendChild(cartContainer);
                         cartItemsAddFunction();
+                        if (overallPrice <= 0) {
+                            document.getElementById('buy-cart-button').style.backgroundColor = 'gray';
+                            document.getElementById('buy-cart-button').style.pointerEvents = 'none';
+                        }
                     }
                 })
         }
@@ -253,14 +271,20 @@ document.getElementById('cart').onclick = function() {
 function cartItemsAddFunction() {
     let cartItems = document.getElementsByClassName('cart-card');
     for (let i = 0;  i < cartItems.length; i++) {
-        cartItems[i].onclick = function() {
+        cartItems[i].getElementsByClassName('delete-cart-button')[0].onclick = function() {
             fetch('/removecart/' + cartItems[i].getElementsByClassName('delete-cart-button')[0].id.replace('cart-', ''))
                 .then(response => response.json())
                 .then(data => {
                     if (data.succes) {
+                        overallPrice -= parseInt(cartItems[i].getElementsByTagName('div')[1].innerHTML.replace(' Ft', ''));
+                        document.getElementById('cart-overall').getElementsByTagName('div')[0].innerHTML = "A rendelés végösszege: " + overallPrice + " Ft";
                         cartCount -= 1;
                         document.getElementById('cart-count').innerHTML = cartCount;
                         cartItems[i].remove();
+                        if (overallPrice <= 0) {
+                            document.getElementById('buy-cart-button').style.backgroundColor = 'gray';
+                            document.getElementById('buy-cart-button').style.pointerEvents = 'none';
+                        }
                     }
                 })
         }

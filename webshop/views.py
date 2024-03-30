@@ -34,6 +34,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import requires_csrf_token
+from django.contrib.auth.models import User
 
 from .serializers import ProductSerializer, CategorySerializer, CartSerializer
 from .models import Product, Category, Cart
@@ -134,3 +135,13 @@ def remove_cart(request, item):
         item.delete()
         return JsonResponse({"succes": True})
     else: return JsonResponse({"succes": False})
+
+@api_view(['GET'])
+def adminsite(request):
+    if request.method == 'POST':
+        #if user == admin then
+        redirect('admin.html')
+        #end
+    else:
+        Response({"succes": False, "message": "You are not authorized via admin."})
+            

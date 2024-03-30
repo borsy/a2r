@@ -59,6 +59,7 @@ def index(request):
     return render(request, 'index.html')
 
 urlpatterns = [
+    path('admin/', web.adminsite),
     path('admin/', admin.site.urls),
     path('category/<str:category>', web.getProductsByCategory),
     path('categories/', web.getCategories),
