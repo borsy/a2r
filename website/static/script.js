@@ -61,13 +61,13 @@ function webshopClicked() {
 
 function categoryClicked(category) {
     redirect = `webshop/${category.id}`;
-    fetch('/category/' + category)
-        .then(res => res.json())
-        .then(data => {
-            container.innerHTML = null;
-            for (let i = 0; i < data.length; i++) {
-                let card = document.createElement('div');
-                card.className = 'product-card';
+    fetch(URL + '/category/' + category)
+    .then(res => res.json())
+    .then(data => {
+        container.innerHTML = null;
+        for (let i = 0; i < data.length; i++) {
+            let card = document.createElement('div');
+            card.className = 'product-card';
 
                 let name = document.createElement('div');
                 let price = document.createElement('div');
