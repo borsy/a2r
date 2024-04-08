@@ -60,7 +60,7 @@ def index(request):
 
 urlpatterns = [
     path('admin/', web.adminsite),
-    path('admin/', admin.site.urls),
+    path('adminsite/', admin.site.urls),
     path('category/<str:category>', web.getProductsByCategory),
     path('categories/', web.getCategories),
     path('', web.index_view, name='index'),

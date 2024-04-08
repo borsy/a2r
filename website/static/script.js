@@ -61,7 +61,7 @@ function webshopClicked() {
 
 function categoryClicked(category) {
     redirect = `webshop/${category.id}`;
-    fetch(URL + '/category/' + category)
+    fetch('/category/' + category)
     .then(res => res.json())
     .then(data => {
         container.innerHTML = null;
