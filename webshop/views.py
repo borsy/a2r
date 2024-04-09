@@ -135,13 +135,3 @@ def remove_cart(request, item):
         item.delete()
         return JsonResponse({"succes": True})
     else: return JsonResponse({"succes": False})
-
-@api_view(['GET'])
-def adminsite(request):
-    if request.method == 'POST':
-        #if user == admin then
-        redirect('admin.html')
-        #end
-    else:
-        Response({"succes": False, "message": "You are not authorized via admin."})
-            
