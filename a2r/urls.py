@@ -54,12 +54,14 @@ from django.contrib.auth.views import LoginView
 
 """ Be importáljuk a webshop applikáció view.py def részeit "web" néven. Azaz úgy tudjuk meghívni őket, hogy web.függvényNév ezzel leegyszerűsítve a behívásokat... """
 import webshop.views as web
+import a2r.views as conf
 
 def index(request):
     return render(request, 'index.html')
 
 urlpatterns = [
-    path('admin/', web.adminsite),
+    path('admin/', conf.adminsite, name='admin'),
+    path('admin/main', conf.admin_main,name='adminmain'),
     path('adminsite/', admin.site.urls),
     path('category/<str:category>', web.getProductsByCategory),
     path('categories/', web.getCategories),

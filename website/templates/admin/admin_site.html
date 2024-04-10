@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/admin/admin.css">
+        <title>A2R Admin</title>
+    </head>
+    <body>
+        <div class="nav">
+            <div class="logo">A<div>2</div>R Admin</div> 
+            <a href="{% url 'index' %}" class="button">Vissza a főoldalra</a>
+        </div>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
