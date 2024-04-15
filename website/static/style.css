@@ -8,7 +8,7 @@ body {
 }
 
 #message {
-    width: 100vw;
+    /* width: 100vw; */
     text-align: right;
 }
 
@@ -18,16 +18,20 @@ body {
     height: 100vh;
 }
 
+.navigation *{
+    box-sizing: border-box;
+}
+
 .navigation {
     background-color: white;
 
-    padding-bottom: 10px;
+    padding: 10px;
     margin-bottom: 40px;
     box-shadow: 5px 5px 50px 1px rgba(0, 0, 0, .2);
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-
+    width: 100%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -127,8 +131,8 @@ hr {
 #cart>div {
     position: absolute;
     
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     background-color: rgb(255, 50, 50);
     border-radius: 50%;
 

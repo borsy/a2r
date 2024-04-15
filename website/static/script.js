@@ -251,6 +251,9 @@ document.getElementById('cart').onclick = function() {
                         let buyButton = document.createElement('div');
                         buyButton.id = 'buy-cart-button';
                         buyButton.innerHTML = "Megrendelés";
+                        buyButton.addEventListener('click', ()=>{
+                            alert('Köszönjük a megrendelését.')
+                        })
                         cartOverall.appendChild(overallPriceDiv);
                         cartOverall.appendChild(buyButton);
                         let hr = document.createElement('hr');
