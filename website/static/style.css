@@ -1,175 +1,204 @@
-body {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-
+:root {
     font-family: sans-serif;
+    cursor: default;
+
+    --main: rgb(255, 50, 50);
+    --main-hover: rgb(200, 0, 0);
+    --dot-bg: rgb(220, 220, 220);
+    --dot-color: rgb(150, 150, 150);
+    --dot-size: 1px;
+    --dot-space: 10px;
+    --dotted: linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
 }
 
-#message {
-    width: 100vw;
-    text-align: right;
+* {
+    margin: 0;
+    box-sizing: border-box;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+}
+
+body {
+    height: auto;
 }
 
 .main-con {
     position: absolute;
+    
     width: 100vw;
-    height: 100vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
 }
 
 .navigation {
     background-color: white;
 
-    padding-bottom: 10px;
-    margin-bottom: 40px;
-    box-shadow: 5px 5px 50px 1px rgba(0, 0, 0, .2);
-    position: -webkit-sticky;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+    border-radius: 0 0 10px 10px;
+    height: auto;
+    width: 100vw;
+
+    margin: 0 0 30px 0;
+
     position: sticky;
+    position: -webkit-sticky;
     top: 0;
 
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-.logo {
-    display: inline-block;
-    color: black;
-    font-weight: 800;
-
-    font-size: 35pt;
-    margin: 20px 20px 0 20px;
-}
-
-.logo div {
-    display: inline-block;
-    color: rgb(255, 50, 50);
-}
-
-hr {
-    border: 1px solid black;
-}
-
-.navigation-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    flex-wrap: wrap;
-}
-
-.navigation-list li {
-    background-color: rgb(255, 50, 50);
-    color: white;
-    font-weight: 800;
-
-    padding: 10px 20px 10px 20px;
-    border-radius: 10px;
-
-    cursor: pointer;
     transition: all .5s;
 }
 
-.navigation-list li:hover {
-    background-color: rgb(200, 50, 50);
+.navigation:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .6);
+}
+
+.nav-upper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 5px 0 5px;
+}
+
+.logo, .logo>div {
+    display: flex;
+    flex-direction: row;
+    font-size: 30pt;
+}
+
+.logo>div {
+    color: var(--main);
 }
 
 .logreg {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     gap: 10px;
-    justify-content: end;
-    margin-right: 20px;
+    width: auto;
+    font-size: 12pt;
 }
 
-.logreg div:nth-child(1), .logreg div:nth-child(2), .logreg div:nth-child(3) {
-    padding: 5px;
-    border-radius: 10px;
-    background-color: rgb(255, 50, 50);
-    color: white;
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition: background-color .5s;
-}
-
-.logreg div:nth-child(1):hover, .logreg div:nth-child(2):hover, .logreg div:nth-child(3):hover {
-    background-color: rgb(200, 50, 50);
+.logreg>.button {
+    height: 30px;
 }
 
 #cart {
     position: relative;
-    width: 40px;
-    height: 40px;
+    
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+
     transition: all .5s;
 }
 
 #cart:hover {
-    transform: scale(1.1)
+    scale: 1.1;
 }
 
 #cart>img {
     position: absolute;
-
-    width: 40px;
-    height: 40px;
-
-    cursor: pointer;
-    z-index: 1;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    
+    width: inherit;
+    height: inherit;
 }
 
 #cart>div {
     position: absolute;
-    
-    width: 10px;
-    height: 10px;
-    background-color: rgb(255, 50, 50);
+    right: 7px;
+    bottom: 0;
+    z-index: 1;
+
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
     border-radius: 50%;
-
-    top: 20px;
-    left: 20px;
-    z-index: 2;
-
-    margin: 0 auto 0 auto;
     text-align: center;
-    line-height: 10px;
-    font-size: 7pt;
+
+    background-color: var(--main);
+    color: white;
+    font-weight: 800;
+    font-size: 9pt;
+}
+
+.button {
+    background-color: var(--main);
+    color: white;
+
+    cursor: pointer;
+    
+    padding:5px;
+    width: 120px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 500;
+
+    transition: all .5s;
+}
+
+.button:hover {
+    background-color: var(--main-hover);
+}
+
+ul {
+    margin: 0;
+}
+
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+.navigation-list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    margin: 10px 0 0 10px;
 }
 
 #category-list {
-    list-style: none;
-    margin: 0;
-    padding: 5px 0 0 0;
     display: flex;
-    align-items: center;
+    flex-direction: row;
     gap: 10px;
-
-    flex-wrap: wrap;
+    margin: 3px 0 0 20px;
+    overflow: hidden;
 }
 
-#category-list li {
-    background-color: rgb(255, 50, 50);
-    color: white;
-    font-weight: 800;
-    font-size: 10pt;
-
-    padding: 10px 20px 10px 20px;
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    transition: background-color .5s;
+#nav-control {
+    display: none;
 }
 
-#category-list li:hover {
-    background-color: rgb(200, 50, 50);
+.cat-control {
+    display: flex;
+    flex-direction: column;
+    height: 41px;
+
+    transition: all .5s;
 }
+
+#nav-control:checked + .cat-control {
+    height: 75px;
+}
+
+#message {
+    position: fixed;
+    right: 100px;
+    top: 45px;
+}
+
+/* MAIN CONTENT */
 
 #container {
     width: 80vw;
@@ -191,16 +220,19 @@ hr {
     background-color: rgb(240, 240, 240);
     border-radius: 10px;
     padding: 30px 15px 30px 15px;
-
-
+    background: var(--dotted);
+    
     width: 250px;
-    height: 300px;
+    height: auto;
 
-    transition: box-shadow .5s;
+    transition: all .5s;
+    overflow: hidden;
 }
 
 .product-card:hover {
     box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+
+    scale: 1.01;
 }
 
 .product-name {
@@ -225,203 +257,294 @@ hr {
     background-color: rgb(200, 50, 50);
 }
 
+/* Login */
+
 #loginForm {
     display: flex;
     flex-direction: column;
-    gap: 7px;
-
-    border-radius: 15px;
-    padding: 30px 15px 30px 15px;
+    
     background-color: rgb(240, 240, 240);
-    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, .2);
-    transition: all 1s;
+    background: var(--dotted);
+    border-radius: 10px;
+    padding: 20px;
+
+    justify-content: center;
+    align-items: center;
+
+    transition: all .5s;
 }
 
-#loginForm:hover {
-    box-shadow: 5px 5px 50px 1px rgba(0, 0, 0, .2);
+#loginForm>input {
+    border: 0;
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;    
+    background: var(--dotted);
+    transition: all .5s;
 }
 
-#loginForm .loginButton {
-    background-color: rgb(255, 50, 50);
+#loginForm>input:focus {
+    background: white;
+    scale: 1.02;
+}
+
+.loginButton {
+    border: 0;
+}
+
+#loginLabel {
+    width: 100%;
+    font-size: 17pt;
+    padding: 0 0 20px 0;
+}
+
+.loginForm_buttons {
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.loginForm_buttons * {
+    margin: 15px 0 0 0;
+    padding: 5px;
+    font-size: 10pt;
+    border-radius: 5px;
+    background-color: var(--main);
     color: white;
-    border-radius: 15px;
-    border: 0;
-    padding: 10px 0 10px 0;
-    font-size: 12pt;
-    font-weight: 800;
 
-    margin-top: 20px;
+    cursor: pointer;
+
+    transition: all .5s;
 }
 
-#loginForm .loginButton:hover {
-    background-color: rgb(200, 50, 50);
+.loginForm_buttons *:hover {
+    background-color: var(--main-hover);
 }
 
-#loginForm input {
-    height: 20px;
-    border: 0;
-    border-radius: 2px;
-}
-
-#loginnForm input:focus {
-    outline: 3px solid rgb(255, 50, 50);
-}
+/* Registrations */
 
 #registrationForm {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 7px;
-
-    border-radius: 15px;
-    padding: 30px 15px 30px 15px;
+    
     background-color: rgb(240, 240, 240);
-    box-shadow: 5px 5px 50px 1px rgba(0, 0, 0, .2);
-}
+    background: var(--dotted);
+    border-radius: 10px;
+    padding: 20px;
 
-#registrationForm .registButton {
-    background-color: rgb(255, 50, 50);
-    color: white;
-    border-radius: 15px;
-    border: 0;
-    padding: 10px 0 10px 0;
-    font-size: 12pt;
-    font-weight: 800;
+    justify-content: center;
+    align-items: center;
 
-    margin-top: 20px;
-}
-
-#registrationForm .registButton:hover {
-    background-color: rgb(200, 50, 50);
+    transition: all .5s;
 }
 
 #registrationForm input {
-    height: 20px;
     border: 0;
-    border-radius: 2px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;    
+    background: var(--dotted);
+    transition: all .5s;
+    height: 30px;
+
+    font-size: 10pt;
 }
 
 #registrationForm input:focus {
-    outline: 3px solid rgb(255, 50, 50);
+    background: white;
+    scale: 1.02;
 }
 
-.messagebox {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, .2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.messagebox-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 10px;
-    
-    width: 250px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 0 30px rgba(0, 0, 0, .2);
-}
-
-.messagebox-header {
-    background-color: red;
-    border-radius: 10px 10px 5px 5px;
-    color: white;
-    font-weight: 800;
-    padding: 10px 5px 10px 5px;
-}
-
-.messagebox-text {
-    padding: 10px;
-}
-
-.messagebox-button {
-    background-color: red;
-    color: white;
-    width: 50px;
-    border-radius: 10px;
-    font-weight: 800;
-    text-align: center;
+.registButton {
+    margin: 15px 0 0 0;
     padding: 5px;
+    font-size: 10pt;
+    border-radius: 5px;
+    background-color: var(--main);
+    color: white;
+    outline: none;
+    border: none;
+
     cursor: pointer;
+
+    transition: all .5s;
 }
 
-.messagebox-button:hover {
-    background-color: rgb(200, 0, 0);
+.registButton:hover {
+    background-color: var(--main-hover);
 }
+
+.registLabel {
+    width: 100%;
+    font-size: 17pt;
+    padding: 0 0 20px 0;
+}
+
+.birth-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.birth-container label {
+    font-size: 10pt;
+    min-width: 120px;
+    line-height: 30px;
+    padding: 0 0 0 4px;
+    color: gray;
+}
+
+.privacy-container {
+    display: flex;
+    flex-direction: row;
+    font-size: 10pt;
+    width: 100%;
+    gap: 5px;
+}
+
+#acceptPrivacyRegistration {
+    accent-color: var(--main);
+    max-width: 15px;
+    outline: 0;
+    
+
+    cursor: pointer;
+
+    transition: all .5s;
+}
+
+.privacy-container label {
+    line-height: 30px;
+}
+
+/* Cart */
 
 #cart-container {
-    box-shadow: 0 0 30px rgba(0, 0, 0, .4);
-    width: 80vw;
+    background: var(--dotted);
     border-radius: 15px;
+    
+    width: 80vw;
+    height: auto;
 
-    display: flex;
-    flex-direction: column;
-    margin: 0 0 20px 0;
+    padding: 15px;
+    transition: all .5s;
 }
 
+#cart-container:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+    scale: 1.05;
+}
 
 .cart-card {
-    display: grid;
-    grid-template-columns: 1fr .5fr .1fr;
-    margin: 20px 50px 10px 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    transition: all .5s;
+}
+
+.cart-card:hover {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    scale: 1.01;
 }
 
 .delete-cart-button {
-    background: rgb(255, 50, 50);
-    padding: 5px;
-    margin: -5px;
-    font-weight: 800;
-    font-size: 10pt;
-    color: white;
-    text-align: center;
-    border-radius: 10px;
-    cursor: pointer;
-
-    transition: background-color .5s;
+    transition: all .5s;
 }
 
 .delete-cart-button:hover {
-    background-color: rgb(200, 50, 50);
+    background-color: var(--main);
+    color: white;
+    padding: 5px;
+    margin: -5px;
+    border-radius: 5px;
 }
 
 hr {
-    border: 2px solid rgb(255, 50, 50);
-    width: 90%;
-    border-radius: 20px;
-    margin: 30px auto 30px auto;
+    margin: 25px 10px;
 }
 
 #cart-overall {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    margin: 0px 50px 20px 50px;
 }
 
 #buy-cart-button {
-    background-color: rgb(255, 50, 50);
     padding: 5px;
-    margin: -5px;
-    font-weight: 800;
-    font-size: 10pt;
-    border-radius: 10px;
+    background-color: var(--main);
     color: white;
-    text-align: center;
+    border-radius: 5px;
     cursor: pointer;
-
-    transition: background-color .5s;
+    transition: all .5s;
 }
 
 #buy-cart-button:hover {
-    background-color: rgb(200, 50, 50);
+    background-color: var(--main-hover);
 }
 
-@media screen and (max-width: 768px) {
-    .container {
-        width: 100vw;
-    }
+/* Messagebox */
+
+.messagebox {
+    position: absolute;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    font-size: 20pt;
+}
+
+.messagebox>div {
+    background: var(--dotted);
+    border-radius: 5px;
+    transition: all .5s;
+}
+
+.messagebox>div:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .6);
+    scale: 1.05;
+}
+
+.messagebox-header {
+    padding: 15px 5px;
+    font-size: 22pt;
+    background-color: var(--main);
+    border-radius: 5px 5px 0 0;
+    color: white;
+}
+
+.messagebox-text {
+    padding: 30px 10px;
+    text-align: center;
+}
+
+.messagebox-button {
+    margin: 0 5px 5px auto;
+    width: 100px;
+    text-align: center;
+    overflow: hidden;
+    background-color: var(--main);
+    color: white;
+    border-radius: 5px;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.messagebox-button:hover {
+    background-color: var(--main-hover);
 }

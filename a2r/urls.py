@@ -70,4 +70,5 @@ urlpatterns = [
     path('addcart/<int:item>', web.add_cart, name='add_cart'),
     path('getcart/', web.get_cart, name='add_cart'),
     path('removecart/<int:item>', web.remove_cart, name='remove_cart'),
+    path('checkout/', web.create_order, name='order'),
 ]

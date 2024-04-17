@@ -45,10 +45,11 @@ function webshopClicked() {
             let categoryList = document.getElementById('category-list');
             categoryList.innerHTML = null;
             for (let i = 0; i < data.length; i++) {
-                let li = document.createElement('li');
-                li.textContent = data[i].name;
-                li.onclick = function () { categoryClicked(data[i].name) };
-                categoryList.appendChild(li);
+                let catElem = document.createElement('div');
+                catElem.textContent = data[i].name;
+                catElem.onclick = function () { categoryClicked(data[i].name) };
+                catElem.className = 'button';
+                categoryList.appendChild(catElem);
 
             }
             // Hívjuk meg az alapértelmezett kategóriát is
@@ -77,7 +78,7 @@ function categoryClicked(category) {
                 name.className = 'product-name';
                 price.className = 'product-price';
                 description.className = 'product-description';
-                button.className = 'product-button';
+                button.className = 'product-button button';
                 name.textContent = data[i].name;
                 price.textContent = parseInt(data[i].price) + ' Ft';
                 description.textContent = data[i].description;
@@ -112,20 +113,23 @@ contractButton.onclick = function() {
     container.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aliquam odio dicta soluta libero optio porro id autem quo deleniti rem neque eaque earum fugiat, ullam totam unde natus laborum illum ducimus? Accusantium neque, tempora sed repellat expedita aspernatur cumque itaque nesciunt ex commodi id placeat totam omnis pariatur aut autem laborum doloremque, culpa ea sequi. Consectetur unde eos fuga cumque modi! Error recusandae neque, corporis odio, perspiciatis quas sed dolorem inventore pariatur dolor officia vel facilis aperiam, incidunt suscipit soluta illo! Animi iusto, itaque deserunt illo quia expedita accusamus. Hic numquam debitis a, laborum facilis rem consequatur dolor officiis blanditiis neque, deserunt consectetur repellendus culpa eaque! Ducimus voluptatum, perspiciatis omnis iusto magnam quis voluptatem non possimus totam soluta porro cumque aliquid odit, commodi alias dolor. Deleniti maxime unde doloribus totam voluptatibus, porro blanditiis cum. Quam eum, enim laboriosam maxime, quas asperiores id perferendis voluptatibus aut tenetur quod, neque recusandae explicabo delectus facilis architecto? Sit accusantium labore illo dolore veritatis libero vitae quibusdam magnam earum possimus magni ullam rem doloribus, odio nulla est ad laborum cumque omnis neque, facilis, dolor pariatur nostrum? Reiciendis eum nihil ipsa. Dolorum aut reprehenderit, accusamus non dolor nam earum ipsa voluptate nostrum, debitis ullam mollitia, maxime praesentium error aperiam facilis. Corrupti culpa, consequatur expedita fugit praesentium ullam adipisci debitis voluptas maiores corporis amet dicta excepturi ipsum iusto voluptatibus earum veniam incidunt explicabo. Autem porro consequatur dolor fuga provident maxime inventore quibusdam magnam et ullam quisquam quos, mollitia corrupti expedita doloribus sunt incidunt quas possimus ad quasi tempore molestias. Qui quo sunt delectus maiores molestias alias minima enim exercitationem? Eaque aspernatur asperiores illum aperiam reiciendis omnis velit nostrum ab fuga, saepe voluptas, impedit voluptatibus, iusto possimus. Atque iusto error earum aliquid cum. Odio laboriosam dolores blanditiis. Sequi et doloribus ad neque similique aspernatur, nostrum, qui labore suscipit enim laboriosam amet aperiam, voluptates consequuntur consequatur iusto. Accusamus delectus sequi, hic accusantium mollitia odit, voluptates labore quasi ducimus a, ea ratione enim ut! Perspiciatis quas nihil quos quasi voluptatibus odit unde illum. Expedita a quam alias asperiores veniam. Architecto nesciunt consequatur quos ratione aliquam, labore voluptas vero maxime dolore? Corrupti blanditiis culpa provident necessitatibus facere neque similique, molestiae eos accusantium laborum itaque minus possimus consequatur illum ab quis fuga sit reprehenderit nam ducimus explicabo, facilis deleniti dignissimos. Ipsam commodi ad sint quae ab. Architecto sequi magni voluptate est quaerat natus consectetur excepturi ducimus alias assumenda? Distinctio, incidunt corporis.';
 }
 
-document.getElementById('register').onclick = function() {
+
+
+document.getElementById('register').onclick = () => registerClicked();
+function registerClicked() {
     categoryList.innerHTML = null;
 
     form = "<form id='registrationForm' action='/register/' method='POST'>";
-    form += "<label for='newUsername'>Felhasználónév:</label><input type='text' id='newUsername' name='newUsername' required>";
-    form += "<label for='lastName'>Vezetéknév:</label><input type='text' id='lastName' name='lastName' required>";
-    form += "<label for='firstName'>Keresztnév:</label><input type='text' id='firstName' name='firstName' required>";
-    form += "<label for='birthdate'>Születési dátum:</label><input type='date' id='birthdate' name='birthdate' required>";
-    form += "<label for='address'>Lakcím:</label><input type='text' id='address' name='address' required>";
-    form += "<label for='email'>Email cím:</label><input type='email' id='email' name='email' required>";
-    form += "<label for='newPassword'>Jelszó:</label><input type='password' id='newPassword' name='newPassword' required>";
-    form += "<label for='confirmPassword'>Jelszó megerősítése:</label><input type='password' id='confirmPassword' name='confirmPassword' required>";
-    form += "<div class='privacy-container'><div><input type='checkbox' id='acceptPrivacyRegistration' name='acceptPrivacyRegistration' required>";
-    form += "<label for='acceptPrivacyRegistration'>Elfogadom az <a href='#' target='_blank'>adatvédelmi nyilatkozatot</a>.</label></div></div>";
+    form += "<label for='newUsername' class='registLabel'>Regisztrálás</label><input placeholder='Felhasználónév' type='text' id='newUsername' name='newUsername' required>";
+    form += "<label for='lastName'></label><input placeholder='Vezetéknév' type='text' id='lastName' name='lastName' required>";
+    form += "<label for='firstName'></label><input placeholder='Keresztnév' type='text' id='firstName' name='firstName' required>";
+    form += "<div class='birth-container'><label for='birthdate'>Születési dátum:</label><input type='date' id='birthdate' name='birthdate' required></div>";
+    form += "<label for='address'></label><input placeholder='Lakcím' type='text' id='address' name='address' required>";
+    form += "<label for='email'></label><input placeholder='Email' type='email' id='email' name='email' required>";
+    form += "<label for='newPassword'></label><input placeholder='Jelszó' type='password' id='newPassword' name='newPassword' required>";
+    form += "<label for='confirmPassword'></label><input placeholder='Jelszó megerősítése' type='password' id='confirmPassword' name='confirmPassword' required>";
+    form += "<div class='privacy-container'><input type='checkbox' id='acceptPrivacyRegistration' name='acceptPrivacyRegistration' required>";
+    form += "<label for='acceptPrivacyRegistration'>Elfogadom az <a href='#' target='_blank'>adatvédelmi nyilatkozatot</a>.</label></div>";
     form += "<button type='submit' class='registButton'>Regisztráció</button></form>";
     container.innerHTML = form;
 }
@@ -139,15 +143,13 @@ document.getElementById('login-button').onclick = function() {
 
             form = "<form id='loginForm' action='/login/' method='POST'>";
             form += `<input type='hidden' name='csrfmiddlewaretoken' value='${csrfToken}'>`;
-            form += "<label for='email'>Felhasználónév:</label><input type='text' id='email' name='username' required></br>";
-            form += "<label for='password'>Jelszó:</label><input type='password' id='password' name='password' required></br>";
-            form += "<div class='privacy-container'><div><input type='checkbox' id='acceptPrivacyRegistration' name='acceptPrivacyRegistration' required>";
-            form += "<label for='acceptPrivacyRegistration'>Elfogadom az <a href='#' target='_blank'>adatvédelmi nyilatkozatot</a>.</label></div></div>";
-            form += "<button type='submit' class='loginButton'>Belépés</button></form>";
+            form += "<label for='username' id='loginLabel'>BELÉPÉS</label><input placeholder='Felhasználónév' type='text' id='username' name='username' required></br>";
+            form += "<label for='password'></label><input placeholder='Jelszó' type='password' id='password' name='password' required></br>";
+            form += "<div class='loginForm_buttons'>";
+            form += "<div onclick='registerClicked();' class='login_newUser'>Regisztrálás</div>";
+            form += "<button type='submit' class='loginButton'>Belépés</button></div></form>";
 
             container.innerHTML = form;
-
-            getCartItems();
         })
 }
 
@@ -251,6 +253,18 @@ document.getElementById('cart').onclick = function() {
                         let buyButton = document.createElement('div');
                         buyButton.id = 'buy-cart-button';
                         buyButton.innerHTML = "Megrendelés";
+                        buyButton.addEventListener('click', ()=>{
+                            fetch('/checkout')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.succes) {
+                                    messageBox('Megrendelés', 'Köszönjük a megrendelését!', 'OK');
+                                }
+                                else {
+                                    messageBox('Megrendelés', 'Valami hiba történt a megrendelés közben!', 'OK');
+                                }
+                            });
+                        })
                         cartOverall.appendChild(overallPriceDiv);
                         cartOverall.appendChild(buyButton);
                         let hr = document.createElement('hr');

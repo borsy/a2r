@@ -1,0 +1,427 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+
+    font-family: sans-serif;
+}
+
+#message {
+    width: 100vw;
+    text-align: right;
+}
+
+.main-con {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+.navigation {
+    background-color: white;
+
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    box-shadow: 5px 5px 50px 1px rgba(0, 0, 0, .2);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.logo {
+    display: inline-block;
+    color: black;
+    font-weight: 800;
+
+    font-size: 35pt;
+    margin: 20px 20px 0 20px;
+}
+
+.logo div {
+    display: inline-block;
+    color: rgb(255, 50, 50);
+}
+
+hr {
+    border: 1px solid black;
+}
+
+.navigation-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.navigation-list li {
+    background-color: rgb(255, 50, 50);
+    color: white;
+    font-weight: 800;
+
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.navigation-list li:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+.logreg {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: end;
+    margin-right: 20px;
+}
+
+.logreg div:nth-child(1), .logreg div:nth-child(2), .logreg div:nth-child(3) {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(255, 50, 50);
+    color: white;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: background-color .5s;
+}
+
+.logreg div:nth-child(1):hover, .logreg div:nth-child(2):hover, .logreg div:nth-child(3):hover {
+    background-color: rgb(200, 50, 50);
+}
+
+#cart {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    transition: all .5s;
+}
+
+#cart:hover {
+    transform: scale(1.1)
+}
+
+#cart>img {
+    position: absolute;
+
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
+    z-index: 1;
+}
+
+#cart>div {
+    position: absolute;
+    
+    width: 10px;
+    height: 10px;
+    background-color: rgb(255, 50, 50);
+    border-radius: 50%;
+
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+
+    margin: 0 auto 0 auto;
+    text-align: center;
+    line-height: 10px;
+    font-size: 7pt;
+}
+
+#category-list {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+#category-list li {
+    background-color: rgb(255, 50, 50);
+    color: white;
+    font-weight: 800;
+    font-size: 10pt;
+
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: background-color .5s;
+}
+
+#category-list li:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+#container {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+
+    background-color: rgb(240, 240, 240);
+    border-radius: 10px;
+    padding: 30px 15px 30px 15px;
+
+
+    width: 250px;
+    height: 300px;
+
+    transition: box-shadow .5s;
+}
+
+.product-card:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+}
+
+.product-name {
+    font-weight: 800;
+    white-space: pre-wrap;
+}
+
+.product-button {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(255, 50, 50);
+    color: white;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: background-color .2s;
+}
+
+.product-button:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    border-radius: 15px;
+    padding: 30px 15px 30px 15px;
+    background-color: rgb(240, 240, 240);
+    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, .2);
+    transition: all 1s;
+}
+
+#loginForm:hover {
+    box-shadow: 5px 5px 50px 1px rgba(0, 0, 0, .2);
+}
+
+#loginForm .loginButton {
+    background-color: rgb(255, 50, 50);
+    color: white;
+    border-radius: 15px;
+    border: 0;
+    padding: 10px 0 10px 0;
+    font-size: 12pt;
+    font-weight: 800;
+
+    margin-top: 20px;
+}
+
+#loginForm .loginButton:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+#loginForm input {
+    height: 20px;
+    border: 0;
+    border-radius: 2px;
+}
+
+#loginnForm input:focus {
+    outline: 3px solid rgb(255, 50, 50);
+}
+
+#registrationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    border-radius: 15px;
+    padding: 30px 15px 30px 15px;
+    background-color: rgb(240, 240, 240);
+    box-shadow: 5px 5px 50px 1px rgba(0, 0, 0, .2);
+}
+
+#registrationForm .registButton {
+    background-color: rgb(255, 50, 50);
+    color: white;
+    border-radius: 15px;
+    border: 0;
+    padding: 10px 0 10px 0;
+    font-size: 12pt;
+    font-weight: 800;
+
+    margin-top: 20px;
+}
+
+#registrationForm .registButton:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+#registrationForm input {
+    height: 20px;
+    border: 0;
+    border-radius: 2px;
+}
+
+#registrationForm input:focus {
+    outline: 3px solid rgb(255, 50, 50);
+}
+
+.messagebox {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.messagebox-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    
+    width: 250px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+}
+
+.messagebox-header {
+    background-color: red;
+    border-radius: 10px 10px 5px 5px;
+    color: white;
+    font-weight: 800;
+    padding: 10px 5px 10px 5px;
+}
+
+.messagebox-text {
+    padding: 10px;
+}
+
+.messagebox-button {
+    background-color: red;
+    color: white;
+    width: 50px;
+    border-radius: 10px;
+    font-weight: 800;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.messagebox-button:hover {
+    background-color: rgb(200, 0, 0);
+}
+
+#cart-container {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+    width: 80vw;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px 0;
+}
+
+
+.cart-card {
+    display: grid;
+    grid-template-columns: 1fr .5fr .1fr;
+    margin: 20px 50px 10px 50px;
+}
+
+.delete-cart-button {
+    background: rgb(255, 50, 50);
+    padding: 5px;
+    margin: -5px;
+    font-weight: 800;
+    font-size: 10pt;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+
+    transition: background-color .5s;
+}
+
+.delete-cart-button:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+hr {
+    border: 2px solid rgb(255, 50, 50);
+    width: 90%;
+    border-radius: 20px;
+    margin: 30px auto 30px auto;
+}
+
+#cart-overall {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 50px 20px 50px;
+}
+
+#buy-cart-button {
+    background-color: rgb(255, 50, 50);
+    padding: 5px;
+    margin: -5px;
+    font-weight: 800;
+    font-size: 10pt;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+
+    transition: background-color .5s;
+}
+
+#buy-cart-button:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100vw;
+    }
+}

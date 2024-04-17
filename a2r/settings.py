@@ -136,7 +136,7 @@ WSGI_APPLICATION = 'a2r.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db',
+        'NAME': 'a2r.webshop',
         'USER': 'root',
         'PASSWORD': '',
         'HOST':'127.0.0.1',

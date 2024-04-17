@@ -10,24 +10,29 @@
     <body>
         <div class="main-con">
             <div class="navigation">
-                <div class="logo">A<div>2</div>R Webshop</div>
-                <div class="logreg">
-                    <div id="logout-button">Kijelentkezés</div>
-                    <div id="login-button">Belépés</div>
-                    <div id="register">Regisztráció</div>
-                    <div id="cart">
-                        <div id="cart-count">0</div>
-                        <img src="static/source/cart-icon.png" alt="cart">
+                <div class="nav-upper">
+                    <div class="logo">A<div>2</div>R Webshop</div>
+                    <div class="logreg">
+                        <div id="logout-button" class="button">Kijelentkezés</div>
+                        <div id="login-button" class="button">Belépés</div>
+                        <div id="register" class="button">Regisztráció</div>
+                        <div id="cart">
+                            <div id="cart-count">0</div>
+                            <img src="static/source/cart-icon.png" alt="cart">
+                        </div>
+                    </div>
+                    <p id="message">Sikeres bejelentkezés!</p>
+                </div>
+                <input type="checkbox" id="nav-control"/>
+                <div class="cat-control">
+                    <div class="navigation-list">
+                        <label id="webshop-button" class="button" for="nav-control">Webshop</label>
+                        <div id="about-button" class="button">Rólunk</div>
+                        <div id="contract-button" class="button">ÁFSZ</div>
+                    </div>
+                    <div id="category-list">
                     </div>
                 </div>
-                <p id="message">Sikeres bejelentkezés!</p>
-                <ul class="navigation-list">
-                    <li id="webshop-button">Webshop</li>
-                    <li id="about-button">Rólunk</li>
-                    <li id="contract-button">ÁFSZ</li>
-                </ul>
-                <ul id="category-list">
-                </ul>
             </div>
             <div id="container">
             </div>

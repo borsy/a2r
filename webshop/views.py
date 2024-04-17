@@ -37,7 +37,7 @@ from django.views.decorators.csrf import requires_csrf_token
 from django.contrib.auth.models import User
 
 from .serializers import ProductSerializer, CategorySerializer, CartSerializer
-from .models import Product, Category, Cart
+from .models import Product, Category, Cart, Order
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -133,5 +133,18 @@ def remove_cart(request, item):
     if request.user.is_authenticated:
         item = Cart.objects.get(id=item)
         item.delete()
+        return JsonResponse({"succes": True})
+    else: return JsonResponse({"succes": False})
+
+def create_order(request):
+    if request.user.is_authenticated:
+        order = Cart.objects.filter(user=request.user)
+        products = ""
+        for item in order:
+            products += f"{item.product.name} | "
+            item.delete()
+        new_order = Order(user=request.user, products=products)
+        new_order.save()
+        print("Új megrendelés érkezett!")
         return JsonResponse({"succes": True})
     else: return JsonResponse({"succes": False})
