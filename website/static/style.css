@@ -62,15 +62,14 @@ a {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+
+    transition: all .5s;
 }
 
 .logo {
-    display: inline-block;
     color: black;
-    font-weight: 800;
 
     font-size: 35pt;
-    margin: 20px 20px 0 20px;
 }
 
 .logo div {
@@ -79,7 +78,8 @@ a {
 }
 
 hr {
-    border: 1px solid black;
+    margin: 25px 10px;
+    border: 1px solid rgb(150, 150, 150);
 }
 
 .navigation-list {
@@ -243,7 +243,7 @@ li {
 #message {
     position: fixed;
     right: 100px;
-    top: 45px;
+    top: 55px;
 }
 
 /* MAIN CONTENT */
@@ -514,10 +514,6 @@ li {
     padding: 5px;
     margin: -5px;
     border-radius: 5px;
-}
-
-hr {
-    margin: 25px 10px;
 }
 
 #cart-overall {
