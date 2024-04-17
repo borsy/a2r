@@ -113,29 +113,75 @@ contractButton.onclick = function() {
     container.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aliquam odio dicta soluta libero optio porro id autem quo deleniti rem neque eaque earum fugiat, ullam totam unde natus laborum illum ducimus? Accusantium neque, tempora sed repellat expedita aspernatur cumque itaque nesciunt ex commodi id placeat totam omnis pariatur aut autem laborum doloremque, culpa ea sequi. Consectetur unde eos fuga cumque modi! Error recusandae neque, corporis odio, perspiciatis quas sed dolorem inventore pariatur dolor officia vel facilis aperiam, incidunt suscipit soluta illo! Animi iusto, itaque deserunt illo quia expedita accusamus. Hic numquam debitis a, laborum facilis rem consequatur dolor officiis blanditiis neque, deserunt consectetur repellendus culpa eaque! Ducimus voluptatum, perspiciatis omnis iusto magnam quis voluptatem non possimus totam soluta porro cumque aliquid odit, commodi alias dolor. Deleniti maxime unde doloribus totam voluptatibus, porro blanditiis cum. Quam eum, enim laboriosam maxime, quas asperiores id perferendis voluptatibus aut tenetur quod, neque recusandae explicabo delectus facilis architecto? Sit accusantium labore illo dolore veritatis libero vitae quibusdam magnam earum possimus magni ullam rem doloribus, odio nulla est ad laborum cumque omnis neque, facilis, dolor pariatur nostrum? Reiciendis eum nihil ipsa. Dolorum aut reprehenderit, accusamus non dolor nam earum ipsa voluptate nostrum, debitis ullam mollitia, maxime praesentium error aperiam facilis. Corrupti culpa, consequatur expedita fugit praesentium ullam adipisci debitis voluptas maiores corporis amet dicta excepturi ipsum iusto voluptatibus earum veniam incidunt explicabo. Autem porro consequatur dolor fuga provident maxime inventore quibusdam magnam et ullam quisquam quos, mollitia corrupti expedita doloribus sunt incidunt quas possimus ad quasi tempore molestias. Qui quo sunt delectus maiores molestias alias minima enim exercitationem? Eaque aspernatur asperiores illum aperiam reiciendis omnis velit nostrum ab fuga, saepe voluptas, impedit voluptatibus, iusto possimus. Atque iusto error earum aliquid cum. Odio laboriosam dolores blanditiis. Sequi et doloribus ad neque similique aspernatur, nostrum, qui labore suscipit enim laboriosam amet aperiam, voluptates consequuntur consequatur iusto. Accusamus delectus sequi, hic accusantium mollitia odit, voluptates labore quasi ducimus a, ea ratione enim ut! Perspiciatis quas nihil quos quasi voluptatibus odit unde illum. Expedita a quam alias asperiores veniam. Architecto nesciunt consequatur quos ratione aliquam, labore voluptas vero maxime dolore? Corrupti blanditiis culpa provident necessitatibus facere neque similique, molestiae eos accusantium laborum itaque minus possimus consequatur illum ab quis fuga sit reprehenderit nam ducimus explicabo, facilis deleniti dignissimos. Ipsam commodi ad sint quae ab. Architecto sequi magni voluptate est quaerat natus consectetur excepturi ducimus alias assumenda? Distinctio, incidunt corporis.';
 }
 
+function registerButtonClicked() {
+    let username = document.getElementById('username').value;
+    let lastname = document.getElementById('lastName').value;
+    let firstname = document.getElementById('firstName').value;
+    let birthdate = document.getElementById('birthdate').value;
+    let postal = document.getElementById('postal').value;
+    let city = document.getElementById('city').value;
+    let address = document.getElementById('address').value;
+    let email = document.getElementById('email').value;
+    let nPassword = document.getElementById('newPassword').value;
+    let password = document.getElementById('password').value;
+    
+    if (nPassword != password) {
+        messageBox('Regisztráció', 'A jelszó nem egyezik!', 'OK');
+    } else {
+        fetch('/get-csrf-token/')
+        .then(response => response.json())
+        .then(data => {
+            fetch('/register/', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': data.csrf_token,
+                },
+                body: JSON.stringify({ 
+                    username: username, 
+                    lastname: lastname, 
+                    firstname: firstname, 
+                    birthdate: birthdate, 
+                    postal: postal, 
+                    city: city, 
+                    address: address, 
+                    email: email, 
+                    password: password,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                messageBox('Regisztrálás', data.message, 'OK');
+            });
+        });
+    }
+}
 
 
 document.getElementById('register').onclick = () => registerClicked();
 function registerClicked() {
-    categoryList.innerHTML = null;
-
-    form = "<form id='registrationForm' action='/register/' method='POST'>";
-    form += "<label for='newUsername' class='registLabel'>Regisztrálás</label><input placeholder='Felhasználónév' type='text' id='newUsername' name='newUsername' required>";
+    document.getElementById('nav-control').checked = false;
+    form = "<div id='registrationForm'>";
+    form += "<div class='registLabel'>Regisztrálás</div><input placeholder='Felhasználónév' type='text' id='username' name='username' required>";
     form += "<label for='lastName'></label><input placeholder='Vezetéknév' type='text' id='lastName' name='lastName' required>";
     form += "<label for='firstName'></label><input placeholder='Keresztnév' type='text' id='firstName' name='firstName' required>";
     form += "<div class='birth-container'><label for='birthdate'>Születési dátum:</label><input type='date' id='birthdate' name='birthdate' required></div>";
+    form += "<label for='postal'></label><input placeholder='irányítószám' type='text' id='postal' name='postal' required>";
+    form += "<label for='city'></label><input placeholder='Város' type='text' id='city' name='city' required>";
     form += "<label for='address'></label><input placeholder='Lakcím' type='text' id='address' name='address' required>";
     form += "<label for='email'></label><input placeholder='Email' type='email' id='email' name='email' required>";
     form += "<label for='newPassword'></label><input placeholder='Jelszó' type='password' id='newPassword' name='newPassword' required>";
-    form += "<label for='confirmPassword'></label><input placeholder='Jelszó megerősítése' type='password' id='confirmPassword' name='confirmPassword' required>";
+    form += "<label for='password'></label><input placeholder='Jelszó megerősítése' type='password' id='password' name='password' required>";
     form += "<div class='privacy-container'><input type='checkbox' id='acceptPrivacyRegistration' name='acceptPrivacyRegistration' required>";
     form += "<label for='acceptPrivacyRegistration'>Elfogadom az <a href='#' target='_blank'>adatvédelmi nyilatkozatot</a>.</label></div>";
-    form += "<button type='submit' class='registButton'>Regisztráció</button></form>";
+    form += "<button type='submit' class='registButton' onclick='registerButtonClicked();'>Regisztráció</button></div>";
     container.innerHTML = form;
 }
 
 document.getElementById('login-button').onclick = function() {
-    categoryList.innerHTML = null;
+    document.getElementById('nav-control').checked = false;
     fetch('/get-csrf-token/')
         .then(response => response.json())
         .then(data => {
@@ -143,7 +189,7 @@ document.getElementById('login-button').onclick = function() {
 
             form = "<form id='loginForm' action='/login/' method='POST'>";
             form += `<input type='hidden' name='csrfmiddlewaretoken' value='${csrfToken}'>`;
-            form += "<label for='username' id='loginLabel'>BELÉPÉS</label><input placeholder='Felhasználónév' type='text' id='username' name='username' required></br>";
+            form += "<label for='username' id='loginLabel'>Belépés</label><input placeholder='Felhasználónév' type='text' id='username' name='username' required></br>";
             form += "<label for='password'></label><input placeholder='Jelszó' type='password' id='password' name='password' required></br>";
             form += "<div class='loginForm_buttons'>";
             form += "<div onclick='registerClicked();' class='login_newUser'>Regisztrálás</div>";
@@ -154,7 +200,7 @@ document.getElementById('login-button').onclick = function() {
 }
 
 document.getElementById('logout-button').onclick = function() {
-    categoryList.innerHTML = null;
+    document.getElementById('nav-control').checked = false;
     fetch('/logout')
         .then(response => response.json())
         .then(data => {
@@ -215,6 +261,7 @@ fetch('/authenticated')
 getCartCount();
 
 document.getElementById('cart').onclick = function() {
+    document.getElementById('nav-control').checked = false;
     fetch('/authenticated')
     .then(res => res.json())
     .then(auth => {

@@ -21,7 +21,7 @@ Ez a kódrészlet regisztrálja a Category, Warehouse, és Product modelleket az
 
 
 from django.contrib import admin
-from .models import Category, Warehouse, Product, Cart, Order
+from .models import Category, Warehouse, Product, Cart, Order, UserAddress
 
 # Register your models here.
 
@@ -30,3 +30,4 @@ admin.site.register(Warehouse)
 admin.site.register(Product)
 admin.site.register(Cart)
 admin.site.register(Order)
+admin.site.register(UserAddress)

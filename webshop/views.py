@@ -33,11 +33,12 @@ Ez a kódrészlet két API nézetet definiál, amelyek a Category és Product mo
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import requires_csrf_token
+from django.views.decorators.csrf import requires_csrf_token, csrf_exempt
 from django.contrib.auth.models import User
+from django.utils.http import urlsafe_base64_encode
 
 from .serializers import ProductSerializer, CategorySerializer, CartSerializer
-from .models import Product, Category, Cart, Order
+from .models import Product, Category, Cart, Order, UserAddress
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -48,6 +49,8 @@ from django.http import JsonResponse
 from django.middleware.csrf import get_token
 
 from django.contrib.auth import logout
+
+import base64
 
 # Create your views here.
 
@@ -65,6 +68,34 @@ def getCategories(request):
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
 
+@api_view(['POST'])
+@csrf_exempt
+def register(request):
+    if request.method == 'POST':
+        data = {}
+        postLine = request.read().decode('utf-8')
+        postLine = postLine.replace('{', '')
+        postLine = postLine.replace('b\'', '')
+        postLine = postLine.replace('}', '')
+        postLine = postLine.replace('"', '')
+        for line in postLine.split(','):
+            data[line.split(':')[0].strip()] = line.split(':')[1].strip()
+        
+        username = data['username']
+        password = data['password']
+        email = data['email']
+        first_name = data['firstname']
+        last_name = data['lastname']
+        user = User.objects.filter(username=username)
+        if user is None:
+            new_user = User(username=username, password=password)#, email=email, first_name=first_name, last_name=last_name)
+            new_user.save()
+            return JsonResponse({'message': 'Sikeres regisztráció!'})
+        else:
+            return JsonResponse({'message': 'A felhasználó már létezik!'})
+    else:
+        return JsonResponse({'message': 'Hiba történt a regisztráció során!'})
+
 def index_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -74,7 +105,7 @@ def index_view(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect('success_page')  # Ide írd be a sikeres bejelentkezés utáni oldal nevét
+                return redirect('index')  # Ide írd be a sikeres bejelentkezés utáni oldal nevét
             else:
                 messages.error(request, 'A felhasználó letiltva.')
         else:

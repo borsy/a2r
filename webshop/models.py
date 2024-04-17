@@ -37,7 +37,16 @@ class Cart(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(User, blank=False, on_delete=models.CASCADE)
-    products = models.CharField(max_length=2550, blank=False)
+    products = models.TextField()
     
     def __str__(self):
         return f"{self.user.email} | {self.products}"
+
+class UserAddress(models.Model):
+    user = models.ForeignKey(User, blank=False, on_delete=models.CASCADE)
+    postal = models.IntegerField()
+    city = models.CharField(max_length=255)
+    address = models.TextField()
+    
+    def __str__(self):
+        return f"{self.user.username} | {self.postal} {self.city} {self.address}"
