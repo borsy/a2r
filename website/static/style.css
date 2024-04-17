@@ -13,6 +13,7 @@
         var(--dot-color);
 }
 
+<<<<<<< HEAD
 * {
     margin: 0;
     box-sizing: border-box;
@@ -25,6 +26,11 @@
 
 body {
     height: auto;
+=======
+#message {
+    /* width: 100vw; */
+    text-align: right;
+>>>>>>> c130ed05f2c2868fb55cbfe49efa0ac98dc9586a
 }
 
 .main-con {
@@ -40,9 +46,14 @@ a {
     text-decoration: none;
 }
 
+.navigation *{
+    box-sizing: border-box;
+}
+
 .navigation {
     background-color: white;
 
+<<<<<<< HEAD
     box-shadow: 0 0 30px rgba(0, 0, 0, .4);
     border-radius: 0 0 10px 10px;
     height: auto;
@@ -50,10 +61,63 @@ a {
 
     margin: 0 0 30px 0;
 
+=======
+    padding: 10px;
+    margin-bottom: 40px;
+    box-shadow: 5px 5px 50px 1px rgba(0, 0, 0, .2);
+    position: -webkit-sticky;
+>>>>>>> c130ed05f2c2868fb55cbfe49efa0ac98dc9586a
     position: sticky;
     position: -webkit-sticky;
     top: 0;
+<<<<<<< HEAD
 
+=======
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.logo {
+    display: inline-block;
+    color: black;
+    font-weight: 800;
+
+    font-size: 35pt;
+    margin: 20px 20px 0 20px;
+}
+
+.logo div {
+    display: inline-block;
+    color: rgb(255, 50, 50);
+}
+
+hr {
+    border: 1px solid black;
+}
+
+.navigation-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.navigation-list li {
+    background-color: rgb(255, 50, 50);
+    color: white;
+    font-weight: 800;
+
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+
+    cursor: pointer;
+>>>>>>> c130ed05f2c2868fb55cbfe49efa0ac98dc9586a
     transition: all .5s;
 }
 
@@ -116,6 +180,7 @@ a {
 
 #cart>div {
     position: absolute;
+<<<<<<< HEAD
     right: 7px;
     bottom: 0;
     z-index: 1;
@@ -123,6 +188,12 @@ a {
     width: 20px;
     height: 20px;
     line-height: 20px;
+=======
+    
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 50, 50);
+>>>>>>> c130ed05f2c2868fb55cbfe49efa0ac98dc9586a
     border-radius: 50%;
     text-align: center;
 

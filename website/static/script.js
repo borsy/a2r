@@ -254,6 +254,7 @@ document.getElementById('cart').onclick = function() {
                         buyButton.id = 'buy-cart-button';
                         buyButton.innerHTML = "Megrendelés";
                         buyButton.addEventListener('click', ()=>{
+<<<<<<< HEAD
                             fetch('/checkout')
                             .then(response => response.json())
                             .then(data => {
@@ -264,6 +265,9 @@ document.getElementById('cart').onclick = function() {
                                     messageBox('Megrendelés', 'Valami hiba történt a megrendelés közben!', 'OK');
                                 }
                             });
+=======
+                            alert('Köszönjük a megrendelését.')
+>>>>>>> c130ed05f2c2868fb55cbfe49efa0ac98dc9586a
                         })
                         cartOverall.appendChild(overallPriceDiv);
                         cartOverall.appendChild(buyButton);
