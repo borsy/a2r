@@ -116,10 +116,6 @@ contractButton.onclick = function() {
 }
 
 async function registerButtonClicked() {
-    if (authenticated) {
-        fetch()
-    }
-
     let username = document.getElementById('username').value;
     let lastname = document.getElementById('lastName').value;
     let firstname = document.getElementById('firstName').value;
