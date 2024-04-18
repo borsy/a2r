@@ -1,0 +1,9 @@
+{% extends "orders_generic.html" %}
+{% block content %}
+{% for order in orders %}
+<div class="order-card">
+    <div class="ordered-by">{{order.user.first_name}} {{order.user.last_name}} {{order.user.email}}</div>
+    <div class="ordered-products">{{ order.products }}</div>
+</div>
+{% endfor %}
+{% endblock %}

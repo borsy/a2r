@@ -1,35 +1,3 @@
-""""
-
-M A GY A R Á Z A T
-
-A megadott kódrészlet egy Django webshop alkalmazás nézet logikáját definiálja a REST API használatával.
-
-Importált modulok:
-
-from django.shortcuts import render: A Django shortcuts moduljából importálja a render függvényt, amely a sablonok renderelésére szolgál (de ebben a kódrészletben nem használjuk).
-from .serializers import ProductSerializer, CategorySerializer: Az aktuális könyvtárból (serializers.py fájl) importálja a ProductSerializer és CategorySerializer osztályokat. Ezek a serializálók a termék és kategória modellek adatait alakítják API-k számára alkalmas formátumba.
-from .models import Product, Category: Az aktuális könyvtárból (models.py fájl) importálja a Product és Category modelleket. Ezek a modellek a termékek és kategóriák adatait tárolják az adatbázisban.
-from rest_framework.decorators import api_view: A Django REST keretrendszerből importálja az api_view dekorátort. Ez a dekorátor jelzi, hogy a függvény egy API nézetet definiál.
-from rest_framework.response import Response: A Django REST keretrendszerből importálja a Response osztályt. Ezzel az osztállyal lehet adatokat visszaküldeni az API kérésekre.
-Nézetek:
-
-getProductsByCategory(request, category): Ez az API nézet egy megadott kategória termékeit listázza ki.
-request: A kérést reprezentáló HTTP objektum.
-category: Az URL-ből kiolvasott kategória neve.
-A nézet megkeresi a megadott nevű kategóriát az adatbázisban, majd lekéri az összes olyan terméket, amelyik ehhez a kategóriához tartozik.
-A lekert termékeket a ProductSerializer segítségével API-k számára alkalmas formátumba alakítja.
-A Response objektum segítségével küldi vissza az adatokat a kliensnek.
-getCategories(request): Ez az API nézet az összes kategóriát listázza ki.
-request: A kérést reprezentáló HTTP objektum.
-A nézet lekéri az összes kategóriát az adatbázisból.
-A lekert kategóriákat a CategorySerializer segítségével API-k számára alkalmas formátumba alakítja.
-A Response objektum segítségével küldi vissza az adatokat a kliensnek.
-Összefoglalva:
-
-Ez a kódrészlet két API nézetet definiál, amelyek a Category és Product modellek adatait teszik elérhetővé a REST API-n keresztül. A serializálók segítségével a modelladatokat API-k számára alkalmas JSON formátumba alakítják.
-
-"""
-
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -51,9 +19,6 @@ from django.middleware.csrf import get_token
 from django.contrib.auth import logout
 
 import base64
-
-# Create your views here.
-
 
 @api_view(['GET'])
 def getProductsByCategory(request, category):
@@ -185,3 +150,32 @@ def create_order(request):
         print("Új megrendelés érkezett!")
         return JsonResponse({"succes": True})
     else: return JsonResponse({"succes": False})
+    
+@api_view(['GET'])
+def get_orders(request):
+    if request.user.is_authenticated and request.user.is_staff:
+        return render(request, 'orders_generic.html')
+    else:
+        return redirect('index')
+
+@api_view(['GET'])
+def get_active_orders(request):
+    if request.user.is_authenticated and request.user.is_staff:
+        orders = Order.objects.filter(active=True)
+        return render(request, 'active_orders.html', {'orders': orders})
+    else:
+        return redirect('index')
+    
+def get_order_history(request):
+    if request.user.is_authenticated and request.user.is_staff:
+        orders = Order.objects.filter(active=False)
+        return render(request, 'order_history.html', {'orders': orders})
+    else:
+        return redirect('index')
+
+def order_done(request, item):
+    if request.user.is_authenticated and request.user.is_staff:
+        order = Order.objects.get(id=item)
+        order.active = False
+        order.save()
+        return redirect('active_orders')

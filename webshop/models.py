@@ -38,6 +38,7 @@ class Cart(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, blank=False, on_delete=models.CASCADE)
     products = models.TextField()
+    active = models.BooleanField(default=True)
     
     def __str__(self):
         return f"{self.user.email} | {self.products}"
