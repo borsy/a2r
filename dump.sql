@@ -29,6 +29,18 @@ CREATE TABLE IF NOT EXISTS `auth_group` (
 
 -- Tábla adatainak mentése a2r.webshop.auth_group: ~0 rows (hozzávetőleg)
 
+-- Struktúra mentése tábla a2r.webshop. auth_permission
+CREATE TABLE IF NOT EXISTS `auth_permission` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `content_type_id` int NOT NULL,
+  `codename` varchar(100) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
+  CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+
 -- Struktúra mentése tábla a2r.webshop. auth_group_permissions
 CREATE TABLE IF NOT EXISTS `auth_group_permissions` (
   `id` bigint NOT NULL AUTO_INCREMENT,
@@ -42,17 +54,6 @@ CREATE TABLE IF NOT EXISTS `auth_group_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- Tábla adatainak mentése a2r.webshop.auth_group_permissions: ~0 rows (hozzávetőleg)
-
--- Struktúra mentése tábla a2r.webshop. auth_permission
-CREATE TABLE IF NOT EXISTS `auth_permission` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `content_type_id` int NOT NULL,
-  `codename` varchar(100) COLLATE utf8mb4_hungarian_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
-  CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- Tábla adatainak mentése a2r.webshop.auth_permission: ~44 rows (hozzávetőleg)
 INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
