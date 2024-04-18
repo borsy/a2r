@@ -86,10 +86,16 @@ def register(request):
         email = data['email']
         first_name = data['firstname']
         last_name = data['lastname']
-        user = User.objects.filter(username=username)
-        if user is None:
-            new_user = User(username=username, password=password)#, email=email, first_name=first_name, last_name=last_name)
+        postal = data['postal']
+        city = data['city']
+        address = data['address']
+        
+        
+        isUser = User.objects.filter(username=username)
+        if len(isUser) == 0:
+            new_user = User.objects.create_user(is_superuser=False, is_staff=False, username=username, password=password, email=email, first_name=first_name, last_name=last_name)
             new_user.save()
+            userAddress = UserAddress.objects.create(postal=postal, city=city, address=address, user=new_user)
             return JsonResponse({'message': 'Sikeres regisztráció!'})
         else:
             return JsonResponse({'message': 'A felhasználó már létezik!'})
