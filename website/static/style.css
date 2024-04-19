@@ -467,11 +467,13 @@ li {
 }
 
 .cart-card {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
+    display: grid;
+    grid-template-columns: 1fr .2fr .2fr;
     transition: all .5s;
+}
+
+.cart-card div:first-child {
+    text-align: left;
 }
 
 .cart-card:hover {
@@ -505,7 +507,7 @@ li {
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    transition: all .5s;
+    transition: all .1s;
 }
 
 #buy-cart-button:hover {
@@ -570,7 +572,13 @@ li {
     background-color: var(--main-hover);
 }
 
-@media screen and (max-width: 676px) {    
+@media screen and (max-width: 676px) {
+    #message {
+        position: fixed;
+        top: 75px;
+        left: 190px;
+        right: auto
+    }
     .nav-upper {
         flex-direction: column;
     }
@@ -608,5 +616,49 @@ li {
     #category-list>.button:hover {
         box-shadow: 0 0 30px rgba(0, 0, 0, .4);
         scale: 1.02;
+    }
+
+    #cart-container {
+        width: 95vw;
+    }
+
+    #cart-container:hover {
+        scale: 1;
+        box-shadow: 0 0 0;
+    }
+
+    .cart-card {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .cart-card:hover {
+        background-color: white;
+        padding: 2px;
+        margin: -2px;
+        border-radius: 5px;
+        scale: 1;
+    }
+
+    .cart-card:not(:first-child) {
+        border-top: 1px gray solid;
+    }
+
+    .delete-cart-button {
+        margin-left: auto;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 5px;
+        color: white;
+        background-color: var(--main);
+    }
+    
+    .delete-cart-button:hover {
+        background-color: var(--main-hover);
+        margin: 0 0 0 auto;
+        padding: 0;
     }
 }
