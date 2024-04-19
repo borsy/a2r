@@ -141,13 +141,14 @@ def remove_cart(request, item):
 def create_order(request):
     if request.user.is_authenticated:
         order = Cart.objects.filter(user=request.user)
+        address = UserAddress.objects.get(user=request.user)
         products = ""
         for item in order:
             products += f"{item.product.name} | "
             item.delete()
-        new_order = Order(user=request.user, products=products)
-        new_order.save()
-        print("Új megrendelés érkezett!")
+        Order.objects.create(user=request.user, address=address, products=products)
+        
+       
         return JsonResponse({"succes": True})
     else: return JsonResponse({"succes": False})
     

@@ -9,9 +9,11 @@
 <body>
     <div class="navigation">
         <div class="logo">A<div>2</div>R Megrendelések</div>
-        <a href="{% url 'active_orders' %}" class="button">Aktív</a>
-        <a href="{% url 'order_history' %}" class="button">Előzmények</a>
-        <a href="{% url 'index' %}" class="button">Vissza a főoldalra</a>
+        <div class="button-navi">
+            <a href="{% url 'active_orders' %}" class="button">Aktív</a>
+            <a href="{% url 'order_history' %}" class="button">Előzmények</a>
+            <a href="{% url 'index' %}" class="button">Vissza a főoldalra</a>
+        </div>
     </div>
     <div class="container">
         {% block content %}

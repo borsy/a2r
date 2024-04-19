@@ -6,8 +6,6 @@ let categoryList = document.getElementById('category-list');
 
 let container = document.getElementById('container');
 
-let redirect = 'main';
-
 let authenticated = false;
 
 let cartCount = 0;
@@ -40,8 +38,7 @@ window.onload = function () {
 webshopButton.onclick = function() {webshopClicked();};
 
 function webshopClicked() {
-    redirect = 'webshop';
-    fetch('/categories')  // A módosított végpont neve
+    fetch('/categories')  
         .then(res => res.json())
         .then(data => {
             let categoryList = document.getElementById('category-list');
@@ -54,16 +51,15 @@ function webshopClicked() {
                 categoryList.appendChild(catElem);
 
             }
-            // Hívjuk meg az alapértelmezett kategóriát is
+           
             if (data.length > 0) {
                 categoryClicked(data[0].name);
             }
-            // Kijelentkezés gomb megjelenítése
+            
         });
 };
 
-function categoryClicked(category) {
-    redirect = `webshop/${category.id}`;
+function categoryClicked(category) { 
     fetch('/category/' + category)
     .then(res => res.json())
     .then(data => {

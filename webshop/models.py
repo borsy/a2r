@@ -35,14 +35,6 @@ class Cart(models.Model):
     def __str__(self):
         return f"{self.user.username} | {self.product.name}"
 
-class Order(models.Model):
-    user = models.ForeignKey(User, blank=False, on_delete=models.CASCADE)
-    products = models.TextField()
-    active = models.BooleanField(default=True)
-    
-    def __str__(self):
-        return f"{self.user.email} | {self.products}"
-
 class UserAddress(models.Model):
     user = models.ForeignKey(User, blank=False, on_delete=models.CASCADE)
     postal = models.IntegerField()
@@ -51,3 +43,12 @@ class UserAddress(models.Model):
     
     def __str__(self):
         return f"{self.user.username} | {self.postal} {self.city} {self.address}"
+    
+class Order(models.Model):
+    user = models.ForeignKey(User, blank=False, on_delete=models.CASCADE)
+    address = models.ForeignKey(UserAddress, blank=False, on_delete=models.CASCADE, default=None)
+    products = models.TextField()
+    active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"{self.user.email} | {self.products}"

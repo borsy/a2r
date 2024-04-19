@@ -94,3 +94,32 @@ body {
 .no-orders {
     font-size: 20pt;
 }
+
+.ordered-products {
+    margin: 15px 0 20px 0;
+}
+
+@media screen and (max-width:676px) {
+    .button-navi {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo {
+        font-size: 20pt;
+        
+    }
+
+    .button {
+        text-align: center;
+    }
+    
+    .container {
+        width: 98vw;
+        margin: 30px auto 0 auto;
+    }
+
+    .order-card {
+        width: 100%;
+    }
+}
