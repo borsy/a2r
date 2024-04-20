@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `auth_permission` (
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
--- Tábla adatainak mentése a2r.webshop.auth_permission: ~44 rows (hozzávetőleg)
+-- Tábla adatainak mentése a2r.webshop.auth_permission: ~48 rows (hozzávetőleg)
 DELETE FROM `auth_permission`;
 INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
 	(1, 'Can add log entry', 1, 'add_logentry'),
@@ -91,22 +91,22 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 	(30, 'Can change warehouse', 8, 'change_warehouse'),
 	(31, 'Can delete warehouse', 8, 'delete_warehouse'),
 	(32, 'Can view warehouse', 8, 'view_warehouse'),
-	(33, 'Can add order', 9, 'add_order'),
-	(34, 'Can change order', 9, 'change_order'),
-	(35, 'Can delete order', 9, 'delete_order'),
-	(36, 'Can view order', 9, 'view_order'),
-	(37, 'Can add product', 10, 'add_product'),
-	(38, 'Can change product', 10, 'change_product'),
-	(39, 'Can delete product', 10, 'delete_product'),
-	(40, 'Can view product', 10, 'view_product'),
-	(41, 'Can add cart', 11, 'add_cart'),
-	(42, 'Can change cart', 11, 'change_cart'),
-	(43, 'Can delete cart', 11, 'delete_cart'),
-	(44, 'Can view cart', 11, 'view_cart'),
-	(45, 'Can add user address', 12, 'add_useraddress'),
-	(46, 'Can change user address', 12, 'change_useraddress'),
-	(47, 'Can delete user address', 12, 'delete_useraddress'),
-	(48, 'Can view user address', 12, 'view_useraddress');
+	(33, 'Can add product', 9, 'add_product'),
+	(34, 'Can change product', 9, 'change_product'),
+	(35, 'Can delete product', 9, 'delete_product'),
+	(36, 'Can view product', 9, 'view_product'),
+	(37, 'Can add cart', 10, 'add_cart'),
+	(38, 'Can change cart', 10, 'change_cart'),
+	(39, 'Can delete cart', 10, 'delete_cart'),
+	(40, 'Can view cart', 10, 'view_cart'),
+	(41, 'Can add user address', 11, 'add_useraddress'),
+	(42, 'Can change user address', 11, 'change_useraddress'),
+	(43, 'Can delete user address', 11, 'delete_useraddress'),
+	(44, 'Can view user address', 11, 'view_useraddress'),
+	(45, 'Can add order', 12, 'add_order'),
+	(46, 'Can change order', 12, 'change_order'),
+	(47, 'Can delete order', 12, 'delete_order'),
+	(48, 'Can view order', 12, 'view_order');
 
 -- Struktúra mentése tábla a2r.webshop. auth_user
 CREATE TABLE IF NOT EXISTS `auth_user` (
@@ -123,13 +123,14 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
--- Tábla adatainak mentése a2r.webshop.auth_user: ~2 rows (hozzávetőleg)
+-- Tábla adatainak mentése a2r.webshop.auth_user: ~1 rows (hozzávetőleg)
 DELETE FROM `auth_user`;
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-	(1, 'pbkdf2_sha256$720000$CwkY0fASul797Ojx3LVDTM$phx+E4bO607iMygMF8dqorR+8pWLhTQXWRag+m9y7so=', '2024-04-18 09:06:42.833730', 1, 'admin', '', '', '', 1, 1, '2024-04-17 08:05:49.893774'),
-	(9, 'pbkdf2_sha256$720000$DNBh73uGB7U8V4tkTr9RHG$MUnHyVp6mjVPFwidDGm+FOoZJ7ROeqwMs8oyqELiUIk=', '2024-04-18 07:42:32.250698', 0, 'Snewkovits', 'Ádám', 'Szabó', 'adamhunxd@gmail.com', 0, 1, '2024-04-18 07:41:48.589253');
+	(1, 'pbkdf2_sha256$720000$OHP4OCed0fTh3J1tG1Ilt9$C9h4Hnelx5fpEiZ/skB1GpAgfbnFedmppX1DddRkYV8=', '2024-04-20 09:32:26.454967', 1, 'admin', '', '', '', 1, 1, '2024-04-20 09:28:00.100453'),
+	(2, 'pbkdf2_sha256$720000$HH6NXhk9U8rl6behHQrEnG$CCtgenbIHeq+NOW11w0T/otruiF7jMZ84jsPYerd8DQ=', '2024-04-20 09:30:36.144922', 0, 'roborob', 'rob', 'robo', 'roborob@test.com', 0, 1, '2024-04-20 09:30:26.251725'),
+	(3, 'pbkdf2_sha256$720000$hpkos0d4Bl2uvVpm3YGgw0$BJzF0ehpAqtUmea37M2UwzbqAGCu97pFSHY4uA05kic=', '2024-04-20 09:32:06.518881', 0, 'Snewkovits', 'Ádám', 'Szabó', 'adamhunxd@gmail.com', 0, 1, '2024-04-20 09:31:58.887095');
 
 -- Struktúra mentése tábla a2r.webshop. auth_user_groups
 CREATE TABLE IF NOT EXISTS `auth_user_groups` (
@@ -177,24 +178,10 @@ CREATE TABLE IF NOT EXISTS `django_admin_log` (
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
   CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
--- Tábla adatainak mentése a2r.webshop.django_admin_log: ~12 rows (hozzávetőleg)
+-- Tábla adatainak mentése a2r.webshop.django_admin_log: ~0 rows (hozzávetőleg)
 DELETE FROM `django_admin_log`;
-INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
-	(1, '2024-04-17 08:11:16.509067', '4', 'Order object (4)', 3, '', 9, 1),
-	(2, '2024-04-17 08:11:21.634940', '3', 'Order object (3)', 3, '', 9, 1),
-	(3, '2024-04-17 08:11:21.636621', '2', 'Order object (2)', 3, '', 9, 1),
-	(4, '2024-04-17 08:11:21.639179', '1', 'Order object (1)', 3, '', 9, 1),
-	(5, '2024-04-17 08:23:26.121987', '7', ' | ', 3, '', 9, 1),
-	(6, '2024-04-17 08:23:26.124215', '6', ' | ', 3, '', 9, 1),
-	(7, '2024-04-17 09:53:42.653172', '2', 'admin | 4220 Hajdúböszörmény Kalvineum Utca\r\n17', 1, '[{"added": {}}]', 12, 1),
-	(8, '2024-04-18 07:12:09.433480', '2', 'Snewkovits', 3, '', 4, 1),
-	(9, '2024-04-18 07:29:01.953450', '4', 'Snewkovits', 3, '', 4, 1),
-	(10, '2024-04-18 07:34:37.231233', '5', 'Snewkovits', 3, '', 4, 1),
-	(11, '2024-04-18 07:35:55.156858', '6', 'Snewkovits', 3, '', 4, 1),
-	(12, '2024-04-18 07:39:18.256341', '7', 'Snewkovits', 3, '', 4, 1),
-	(13, '2024-04-18 07:41:34.162020', '8', 'Snewkovits', 3, '', 4, 1);
 
 -- Struktúra mentése tábla a2r.webshop. django_content_type
 CREATE TABLE IF NOT EXISTS `django_content_type` (
@@ -205,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `django_content_type` (
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
--- Tábla adatainak mentése a2r.webshop.django_content_type: ~11 rows (hozzávetőleg)
+-- Tábla adatainak mentése a2r.webshop.django_content_type: ~12 rows (hozzávetőleg)
 DELETE FROM `django_content_type`;
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 	(1, 'admin', 'logentry'),
@@ -214,11 +201,11 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 	(4, 'auth', 'user'),
 	(5, 'contenttypes', 'contenttype'),
 	(6, 'sessions', 'session'),
-	(11, 'webshop', 'cart'),
+	(10, 'webshop', 'cart'),
 	(7, 'webshop', 'category'),
-	(9, 'webshop', 'order'),
-	(10, 'webshop', 'product'),
-	(12, 'webshop', 'useraddress'),
+	(12, 'webshop', 'order'),
+	(9, 'webshop', 'product'),
+	(11, 'webshop', 'useraddress'),
 	(8, 'webshop', 'warehouse');
 
 -- Struktúra mentése tábla a2r.webshop. django_migrations
@@ -228,33 +215,30 @@ CREATE TABLE IF NOT EXISTS `django_migrations` (
   `name` varchar(255) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- Tábla adatainak mentése a2r.webshop.django_migrations: ~19 rows (hozzávetőleg)
 DELETE FROM `django_migrations`;
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-	(1, 'contenttypes', '0001_initial', '2024-04-17 08:02:41.835877'),
-	(2, 'auth', '0001_initial', '2024-04-17 08:02:42.246697'),
-	(3, 'admin', '0001_initial', '2024-04-17 08:02:42.346418'),
-	(4, 'admin', '0002_logentry_remove_auto_add', '2024-04-17 08:02:42.354690'),
-	(5, 'admin', '0003_logentry_add_action_flag_choices', '2024-04-17 08:02:42.369793'),
-	(6, 'contenttypes', '0002_remove_content_type_name', '2024-04-17 08:02:42.485443'),
-	(7, 'auth', '0002_alter_permission_name_max_length', '2024-04-17 08:02:42.551791'),
-	(8, 'auth', '0003_alter_user_email_max_length', '2024-04-17 08:02:42.571124'),
-	(9, 'auth', '0004_alter_user_username_opts', '2024-04-17 08:02:42.578140'),
-	(10, 'auth', '0005_alter_user_last_login_null', '2024-04-17 08:02:42.622398'),
-	(11, 'auth', '0006_require_contenttypes_0002', '2024-04-17 08:02:42.624307'),
-	(12, 'auth', '0007_alter_validators_add_error_messages', '2024-04-17 08:02:42.629328'),
-	(13, 'auth', '0008_alter_user_username_max_length', '2024-04-17 08:02:42.672808'),
-	(14, 'auth', '0009_alter_user_last_name_max_length', '2024-04-17 08:02:42.713055'),
-	(15, 'auth', '0010_alter_group_name_max_length', '2024-04-17 08:02:42.731076'),
-	(16, 'auth', '0011_update_proxy_permissions', '2024-04-17 08:02:42.738115'),
-	(17, 'auth', '0012_alter_user_first_name_max_length', '2024-04-17 08:02:42.791241'),
-	(18, 'sessions', '0001_initial', '2024-04-17 08:02:42.817886'),
-	(19, 'webshop', '0001_initial', '2024-04-17 08:02:43.100173'),
-	(20, 'webshop', '0002_alter_order_products_useraddress', '2024-04-17 09:51:29.017723'),
-	(21, 'webshop', '0003_order_active', '2024-04-18 09:08:48.065187'),
-	(22, 'webshop', '0004_alter_order_active', '2024-04-18 09:09:49.964069');
+	(1, 'contenttypes', '0001_initial', '2024-04-20 09:25:28.284195'),
+	(2, 'auth', '0001_initial', '2024-04-20 09:25:28.676071'),
+	(3, 'admin', '0001_initial', '2024-04-20 09:25:28.779071'),
+	(4, 'admin', '0002_logentry_remove_auto_add', '2024-04-20 09:25:28.784630'),
+	(5, 'admin', '0003_logentry_add_action_flag_choices', '2024-04-20 09:25:28.790263'),
+	(6, 'contenttypes', '0002_remove_content_type_name', '2024-04-20 09:25:28.848022'),
+	(7, 'auth', '0002_alter_permission_name_max_length', '2024-04-20 09:25:28.893954'),
+	(8, 'auth', '0003_alter_user_email_max_length', '2024-04-20 09:25:28.915113'),
+	(9, 'auth', '0004_alter_user_username_opts', '2024-04-20 09:25:28.922689'),
+	(10, 'auth', '0005_alter_user_last_login_null', '2024-04-20 09:25:28.970332'),
+	(11, 'auth', '0006_require_contenttypes_0002', '2024-04-20 09:25:28.973425'),
+	(12, 'auth', '0007_alter_validators_add_error_messages', '2024-04-20 09:25:28.980424'),
+	(13, 'auth', '0008_alter_user_username_max_length', '2024-04-20 09:25:29.095621'),
+	(14, 'auth', '0009_alter_user_last_name_max_length', '2024-04-20 09:25:29.169669'),
+	(15, 'auth', '0010_alter_group_name_max_length', '2024-04-20 09:25:29.188971'),
+	(16, 'auth', '0011_update_proxy_permissions', '2024-04-20 09:25:29.199092'),
+	(17, 'auth', '0012_alter_user_first_name_max_length', '2024-04-20 09:25:29.255957'),
+	(18, 'sessions', '0001_initial', '2024-04-20 09:25:29.281027'),
+	(19, 'webshop', '0001_initial', '2024-04-20 09:25:29.681017');
 
 -- Struktúra mentése tábla a2r.webshop. django_session
 CREATE TABLE IF NOT EXISTS `django_session` (
@@ -265,12 +249,10 @@ CREATE TABLE IF NOT EXISTS `django_session` (
   KEY `django_session_expire_date_a5c62663` (`expire_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
--- Tábla adatainak mentése a2r.webshop.django_session: ~3 rows (hozzávetőleg)
+-- Tábla adatainak mentése a2r.webshop.django_session: ~1 rows (hozzávetőleg)
 DELETE FROM `django_session`;
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-	('6k7h2ippazk80rhe4nrjf2g3y4fz6k9e', '.eJxVjEEOwiAQRe_C2hCmVKAu3fcMzcwwSNVAUtqV8e7apAvd_vfef6kJtzVPW5NlmqO6KFCn342QH1J2EO9YblVzLesyk94VfdCmxxrleT3cv4OMLX9rB4KOhB2S9MFQ4uiJiCGgPYMlQeNtj8kNZH3H0AUPZGIMabAJhNX7AxnmOQw:1rxNj8:99Wdx5B3h9qf2kfa_pKbRy0V9Hv61QXIOqycRZF0Klk', '2024-05-02 09:06:42.835584'),
-	('jdlacv2ol5rv6zw0abctum3jbb8xisem', '.eJxVjEEOwiAQRe_C2hCmVKAu3fcMzcwwSNVAUtqV8e7apAvd_vfef6kJtzVPW5NlmqO6KFCn342QH1J2EO9YblVzLesyk94VfdCmxxrleT3cv4OMLX9rB4KOhB2S9MFQ4uiJiCGgPYMlQeNtj8kNZH3H0AUPZGIMabAJhNX7AxnmOQw:1rx0gz:Q-hPK5FA3pZLk6ZzUmYvsm5CgWsxXUgfDqeevkDYeK4', '2024-05-01 08:30:57.124954'),
-	('o3qh8fmit6ueqb895ivhxsuwb1q298sr', '.eJxVjEEOwiAQRe_C2hCmVKAu3fcMzcwwSNVAUtqV8e7apAvd_vfef6kJtzVPW5NlmqO6KFCn342QH1J2EO9YblVzLesyk94VfdCmxxrleT3cv4OMLX9rB4KOhB2S9MFQ4uiJiCGgPYMlQeNtj8kNZH3H0AUPZGIMabAJhNX7AxnmOQw:1rxM1w:wn_h5FERivZ15_qJhfAxrLWb-B8bxjHb1r-l-kH5Pcc', '2024-05-02 07:18:00.056858');
+	('rujyjh9emykmq86osysqrrj0lvo7ogq1', '.eJxVjEEOwiAQRe_C2hCg0DIu3XsGwsCMVA0kpV0Z765NutDtf-_9lwhxW0vYOi1hzuIsjDj9bhjTg-oO8j3WW5Op1XWZUe6KPGiX15bpeTncv4MSe_nWCBM7YuUYnDGotKGsgHWGSJD96Jzi5O0Aozc2xYHBs598soxoNSnx_gDm5Df0:1ry73M:yncWaBVPkUzdS_igz7MT_DaWyYePThap-z3BvIOMMVE', '2024-05-04 09:30:36.151376');
 
 -- Struktúra mentése tábla a2r.webshop. webshop_cart
 CREATE TABLE IF NOT EXISTS `webshop_cart` (
@@ -282,10 +264,14 @@ CREATE TABLE IF NOT EXISTS `webshop_cart` (
   KEY `webshop_cart_product_id_73d4b0fc_fk_webshop_product_id` (`product_id`),
   CONSTRAINT `webshop_cart_product_id_73d4b0fc_fk_webshop_product_id` FOREIGN KEY (`product_id`) REFERENCES `webshop_product` (`id`),
   CONSTRAINT `webshop_cart_user_id_4f272746_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=429 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
--- Tábla adatainak mentése a2r.webshop.webshop_cart: ~0 rows (hozzávetőleg)
+-- Tábla adatainak mentése a2r.webshop.webshop_cart: ~3 rows (hozzávetőleg)
 DELETE FROM `webshop_cart`;
+INSERT INTO `webshop_cart` (`id`, `user_id`, `product_id`) VALUES
+	(1, 1, 4),
+	(2, 1, 5),
+	(3, 1, 6);
 
 -- Struktúra mentése tábla a2r.webshop. webshop_category
 CREATE TABLE IF NOT EXISTS `webshop_category` (
@@ -305,26 +291,21 @@ INSERT INTO `webshop_category` (`id`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `webshop_order` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `products` longtext COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `user_id` int NOT NULL,
   `active` tinyint(1) NOT NULL,
+  `user_id` int NOT NULL,
+  `address_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `webshop_order_user_id_c36e4f33_fk_auth_user_id` (`user_id`),
+  KEY `webshop_order_address_id_3f4565a3_fk_webshop_useraddress_id` (`address_id`),
+  CONSTRAINT `webshop_order_address_id_3f4565a3_fk_webshop_useraddress_id` FOREIGN KEY (`address_id`) REFERENCES `webshop_useraddress` (`id`),
   CONSTRAINT `webshop_order_user_id_c36e4f33_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
--- Tábla adatainak mentése a2r.webshop.webshop_order: ~9 rows (hozzávetőleg)
+-- Tábla adatainak mentése a2r.webshop.webshop_order: ~0 rows (hozzávetőleg)
 DELETE FROM `webshop_order`;
-INSERT INTO `webshop_order` (`id`, `products`, `user_id`, `active`) VALUES
-	(5, 'XFX Radeon Speedster SWFT 319 RX 6800 | ASUS Dual GeForce RTX 4060 OC | ASUS GeForce RTX 4070 DUAL | ', 1, 0),
-	(8, 'XFX Radeon Speedster SWFT 319 RX 6800 | ASUS Dual GeForce RTX 4060 OC | ASUS GeForce RTX 4070 DUAL | ', 1, 0),
-	(9, 'XFX Radeon Speedster SWFT 319 RX 6800 | ASUS Dual GeForce RTX 4060 OC | ASUS Dual GeForce RTX 4060 OC | ASUS Dual GeForce RTX 4060 OC | XFX Radeon Speedster SWFT 319 RX 6800 | ASUS GeForce RTX 4070 DUAL | ', 1, 0),
-	(10, 'XFX Radeon Speedster SWFT 319 RX 6800 | XFX Radeon Speedster SWFT 319 RX 6800 | ASUS Dual GeForce RTX 4060 OC | ASUS Dual GeForce RTX 4060 OC | ASUS GeForce RTX 4070 DUAL | ASUS GeForce RTX 4070 DUAL | ', 1, 0),
-	(11, 'XFX Radeon Speedster SWFT 319 RX 6800 | ASUS Dual GeForce RTX 4060 OC | ASUS GeForce RTX 4070 DUAL | ASUS Dual GeForce RTX 4060 OC | XFX Radeon Speedster SWFT 319 RX 6800 | ', 1, 0),
-	(12, 'XFX Radeon Speedster SWFT 319 RX 6800 | ASUS Dual GeForce RTX 4060 OC | ASUS GeForce RTX 4070 DUAL | ', 1, 0),
-	(13, 'XFX Radeon Speedster SWFT 319 RX 6800 | ASUS Dual GeForce RTX 4060 OC | ASUS GeForce RTX 4070 DUAL | ', 1, 0),
-	(14, 'XFX Radeon Speedster SWFT 319 RX 6800 | ASUS Dual GeForce RTX 4060 OC | ', 1, 0),
-	(15, 'XFX Radeon Speedster SWFT 319 RX 6800 | ASUS Dual GeForce RTX 4060 OC | ASUS Dual GeForce RTX 4060 OC | ASUS Dual GeForce RTX 4060 OC | ASUS GeForce RTX 4070 DUAL | ', 9, 0),
-	(16, 'XFX Radeon Speedster SWFT 319 RX 6800 | XFX Radeon Speedster SWFT 319 RX 6800 | XFX Radeon Speedster SWFT 319 RX 6800 | ASUS GeForce RTX 4070 DUAL | ASUS GeForce RTX 4070 DUAL | ASUS GeForce RTX 4070 DUAL | ASUS Dual GeForce RTX 4060 OC | ASUS Dual GeForce RTX 4060 OC | ', 1, 0);
+INSERT INTO `webshop_order` (`id`, `products`, `active`, `user_id`, `address_id`) VALUES
+	(1, 'XFX Radeon Speedster SWFT 319 RX 6800 | AMD Ryzen 5 5600X | MSI MPG B550 GAMING PLUS Alaplap | ', 1, 2, 1),
+	(2, 'ASUS Dual GeForce RTX 4060 OC | ASUS GeForce RTX 4070 DUAL | XFX Radeon Speedster SWFT 319 RX 6800 | ', 1, 3, 2);
 
 -- Struktúra mentése tábla a2r.webshop. webshop_product
 CREATE TABLE IF NOT EXISTS `webshop_product` (
@@ -366,13 +347,13 @@ CREATE TABLE IF NOT EXISTS `webshop_useraddress` (
   PRIMARY KEY (`id`),
   KEY `webshop_useraddress_user_id_6bc9e14a_fk_auth_user_id` (`user_id`),
   CONSTRAINT `webshop_useraddress_user_id_6bc9e14a_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
--- Tábla adatainak mentése a2r.webshop.webshop_useraddress: ~1 rows (hozzávetőleg)
+-- Tábla adatainak mentése a2r.webshop.webshop_useraddress: ~0 rows (hozzávetőleg)
 DELETE FROM `webshop_useraddress`;
 INSERT INTO `webshop_useraddress` (`id`, `postal`, `city`, `address`, `user_id`) VALUES
-	(2, 4220, 'Hajdúböszörmény', 'Kalvineum Utca\r\n17', 1),
-	(3, 4220, 'Hajdúböszörmény', 'Kalvineum Utca', 9);
+	(1, 4032, 'Debrecen', 'Jerikó utca 17.', 2),
+	(2, 4220, 'Hajdúböszörmény', 'Kalvineum Utca', 3);
 
 -- Struktúra mentése tábla a2r.webshop. webshop_warehouse
 CREATE TABLE IF NOT EXISTS `webshop_warehouse` (
