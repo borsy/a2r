@@ -103,12 +103,17 @@ function categoryClicked(category) {
 
 aboutButton.onclick = function() {
     document.getElementById('nav-control').checked = false;
-    container.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aliquam odio dicta soluta libero optio porro id autem quo deleniti rem neque eaque earum fugiat, ullam totam unde natus laborum illum ducimus? Accusantium neque, tempora sed repellat expedita aspernatur cumque itaque nesciunt ex commodi id placeat totam omnis pariatur aut autem laborum doloremque, culpa ea sequi. Consectetur unde eos fuga cumque modi! Error recusandae neque, corporis odio, perspiciatis quas sed dolorem inventore pariatur dolor officia vel facilis aperiam, incidunt suscipit soluta illo! Animi iusto, itaque deserunt illo quia expedita accusamus. Hic numquam debitis a, laborum facilis rem consequatur dolor officiis blanditiis neque, deserunt consectetur repellendus culpa eaque! Ducimus voluptatum, perspiciatis omnis iusto magnam quis voluptatem non possimus totam soluta porro cumque aliquid odit, commodi alias dolor. Deleniti maxime unde doloribus totam voluptatibus, porro blanditiis cum. Quam eum, enim laboriosam maxime, quas asperiores id perferendis voluptatibus aut tenetur quod, neque recusandae explicabo delectus facilis architecto? Sit accusantium labore illo dolore veritatis libero vitae quibusdam magnam earum possimus magni ullam rem doloribus, odio nulla est ad laborum cumque omnis neque, facilis, dolor pariatur nostrum? Reiciendis eum nihil ipsa. Dolorum aut reprehenderit, accusamus non dolor nam earum ipsa voluptate nostrum, debitis ullam mollitia, maxime praesentium error aperiam facilis. Corrupti culpa, consequatur expedita fugit praesentium ullam adipisci debitis voluptas maiores corporis amet dicta excepturi ipsum iusto voluptatibus earum veniam incidunt explicabo. Autem porro consequatur dolor fuga provident maxime inventore quibusdam magnam et ullam quisquam quos, mollitia corrupti expedita doloribus sunt incidunt quas possimus ad quasi tempore molestias. Qui quo sunt delectus maiores molestias alias minima enim exercitationem? Eaque aspernatur asperiores illum aperiam reiciendis omnis velit nostrum ab fuga, saepe voluptas, impedit voluptatibus, iusto possimus. Atque iusto error earum aliquid cum. Odio laboriosam dolores blanditiis. Sequi et doloribus ad neque similique aspernatur, nostrum, qui labore suscipit enim laboriosam amet aperiam, voluptates consequuntur consequatur iusto. Accusamus delectus sequi, hic accusantium mollitia odit, voluptates labore quasi ducimus a, ea ratione enim ut! Perspiciatis quas nihil quos quasi voluptatibus odit unde illum. Expedita a quam alias asperiores veniam. Architecto nesciunt consequatur quos ratione aliquam, labore voluptas vero maxime dolore? Corrupti blanditiis culpa provident necessitatibus facere neque similique, molestiae eos accusantium laborum itaque minus possimus consequatur illum ab quis fuga sit reprehenderit nam ducimus explicabo, facilis deleniti dignissimos. Ipsam commodi ad sint quae ab. Architecto sequi magni voluptate est quaerat natus consectetur excepturi ducimus alias assumenda? Distinctio, incidunt corporis.';
+    container.innerHTML = `<div class="about-container"><div></div><div>${about}</div></div>`
+    for (let item of document.getElementsByClassName("about-word")) {
+        item.onmouseover = () => {
+            item.style.transform = "translate(18px, 150vh) rotate(60deg)";
+        }
+    }
 }
 
 contractButton.onclick = function() {
     document.getElementById('nav-control').checked = false;
-    container.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aliquam odio dicta soluta libero optio porro id autem quo deleniti rem neque eaque earum fugiat, ullam totam unde natus laborum illum ducimus? Accusantium neque, tempora sed repellat expedita aspernatur cumque itaque nesciunt ex commodi id placeat totam omnis pariatur aut autem laborum doloremque, culpa ea sequi. Consectetur unde eos fuga cumque modi! Error recusandae neque, corporis odio, perspiciatis quas sed dolorem inventore pariatur dolor officia vel facilis aperiam, incidunt suscipit soluta illo! Animi iusto, itaque deserunt illo quia expedita accusamus. Hic numquam debitis a, laborum facilis rem consequatur dolor officiis blanditiis neque, deserunt consectetur repellendus culpa eaque! Ducimus voluptatum, perspiciatis omnis iusto magnam quis voluptatem non possimus totam soluta porro cumque aliquid odit, commodi alias dolor. Deleniti maxime unde doloribus totam voluptatibus, porro blanditiis cum. Quam eum, enim laboriosam maxime, quas asperiores id perferendis voluptatibus aut tenetur quod, neque recusandae explicabo delectus facilis architecto? Sit accusantium labore illo dolore veritatis libero vitae quibusdam magnam earum possimus magni ullam rem doloribus, odio nulla est ad laborum cumque omnis neque, facilis, dolor pariatur nostrum? Reiciendis eum nihil ipsa. Dolorum aut reprehenderit, accusamus non dolor nam earum ipsa voluptate nostrum, debitis ullam mollitia, maxime praesentium error aperiam facilis. Corrupti culpa, consequatur expedita fugit praesentium ullam adipisci debitis voluptas maiores corporis amet dicta excepturi ipsum iusto voluptatibus earum veniam incidunt explicabo. Autem porro consequatur dolor fuga provident maxime inventore quibusdam magnam et ullam quisquam quos, mollitia corrupti expedita doloribus sunt incidunt quas possimus ad quasi tempore molestias. Qui quo sunt delectus maiores molestias alias minima enim exercitationem? Eaque aspernatur asperiores illum aperiam reiciendis omnis velit nostrum ab fuga, saepe voluptas, impedit voluptatibus, iusto possimus. Atque iusto error earum aliquid cum. Odio laboriosam dolores blanditiis. Sequi et doloribus ad neque similique aspernatur, nostrum, qui labore suscipit enim laboriosam amet aperiam, voluptates consequuntur consequatur iusto. Accusamus delectus sequi, hic accusantium mollitia odit, voluptates labore quasi ducimus a, ea ratione enim ut! Perspiciatis quas nihil quos quasi voluptatibus odit unde illum. Expedita a quam alias asperiores veniam. Architecto nesciunt consequatur quos ratione aliquam, labore voluptas vero maxime dolore? Corrupti blanditiis culpa provident necessitatibus facere neque similique, molestiae eos accusantium laborum itaque minus possimus consequatur illum ab quis fuga sit reprehenderit nam ducimus explicabo, facilis deleniti dignissimos. Ipsam commodi ad sint quae ab. Architecto sequi magni voluptate est quaerat natus consectetur excepturi ducimus alias assumenda? Distinctio, incidunt corporis.';
+    container.innerHTML = `<div class="afsz-container">${afsz}</div`;
 }
 
 async function registerButtonClicked() {
@@ -361,6 +366,7 @@ function cartItemsAddFunction() {
     }
 }
 
+
 function messageBox(title, message, button) {
     let messageBox = document.createElement('div');
     messageBox.className ='messagebox';
@@ -383,5 +389,11 @@ function messageBox(title, message, button) {
 
     messageBoxButton.onclick = () => {
         document.body.removeChild(messageBox);
+    }
+}
+
+for (let item of document.getElementsByClassName("about-word")) {
+    item.onmouseover = () => {
+        item.innerHTML = "OK";
     }
 }

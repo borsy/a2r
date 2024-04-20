@@ -47,6 +47,8 @@ a {
 
 .navigation {
     background-color: white;
+    position: sticky;
+    top: 0;
 
     box-shadow: 0 0 30px rgba(0, 0, 0, .4);
     border-radius: 0 0 10px 10px;
@@ -233,6 +235,8 @@ li {
     flex-wrap: wrap;
     justify-content: center;
     margin: auto;
+
+    transition: all .5s;
 }
 
 .product-card {
@@ -570,6 +574,62 @@ li {
 
 .messagebox-button:hover {
     background-color: var(--main-hover);
+}
+
+/* AFSZ */
+.afsz-container {
+    text-align: left;
+    margin: 0 0 100px 0;
+}
+
+.highlighted {
+    font-weight: 800;
+    font-size: 20pt;
+    color: var(--main);
+}
+
+/* ABOUT */
+
+.about-container {
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1% 99%;
+    font-size: 17pt;
+
+    background: var(--dotted);
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 15px;
+
+    transition: all .5s;
+}
+
+.about-container:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+}
+
+.mini-logo, .mini-logo div {
+    display: inline;
+}
+
+.mini-logo div {
+    color: var(--main);
+}
+
+.about-container>div:first-of-type {
+    width: 2px;
+    background-color: var(--main);
+}
+
+.about-container>div:nth-child(2) {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.about-word {
+    transition: all 2s;
 }
 
 @media screen and (max-width: 676px) {
