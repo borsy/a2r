@@ -629,7 +629,10 @@ li {
 }
 
 .about-word {
-    transition: all 2s;
+    transition: all 1.5s;
+    transition-timing-function: ease-in;
+    -webkit-transition: all 1.5s;
+    -webkit-transition-timing-function: ease-in;
 }
 
 @media screen and (max-width: 676px) {

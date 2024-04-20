@@ -391,9 +391,3 @@ function messageBox(title, message, button) {
         document.body.removeChild(messageBox);
     }
 }
-
-for (let item of document.getElementsByClassName("about-word")) {
-    item.onmouseover = () => {
-        item.innerHTML = "OK";
-    }
-}
