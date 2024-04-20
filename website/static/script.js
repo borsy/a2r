@@ -106,7 +106,7 @@ aboutButton.onclick = function() {
     container.innerHTML = `<div class="about-container"><div></div><div>${about}</div></div>`
     for (let item of document.getElementsByClassName("about-word")) {
         item.onmouseover = () => {
-            item.style.transform = "translate(18px, 150vh) rotate(60deg)";
+            item.style.transform = "translate(18px, 300vh) rotate(60deg)";
         }
     }
 }
