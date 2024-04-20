@@ -622,4 +622,4 @@ let afsz = 'ÁLTALÁNOS SZERZŐDÉSI FELTÉTELEK (ÁSZF)<br>' +
 '<br>' +
 'A jelen dokumentum a webshop működésével kapcsolatban minden releváns adatkezelési információt tartalmaz az Európai Unió 2016/679 számú Általános Adatvédelmi Rendelete (a továbbiakban: Rendelet. GDPR) és a 2011. évi CXII. tv. (a továbbiakban: Infotv.) alapján.<br>' +
 '<br>' +
-'<div class="highlighted">A jelen dokumentum nem fedi a valóságot, csak példaképp szerepel a weboldalon a vizsgai idejéig.</div>';
+'<div class="highlighted">A jelen dokumentum nem fedi a valóságot, csak példaképp szerepel a weboldalon a vizsga idejéig.</div>';
