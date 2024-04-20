@@ -63,3 +63,15 @@ time.sleep(10)
 about_button = driver.find_element(By.XPATH, '//*[@id="about-button"]')
 about_button.click()
 time.sleep(120)
+
+divs = driver.find_elements(By.XPATH, "//div[@class='about-container']//div")
+
+actions = webdriver.ActionChains(driver)
+
+
+for div in divs:
+    actions.move_to_element(div).perform()
+
+
+time.sleep(4)
+driver.quit()

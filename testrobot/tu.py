@@ -66,7 +66,7 @@ time.sleep(1)
 
 cb_apr = driver.find_element(By.XPATH, '//*[@id="acceptPrivacyRegistration"]')
 cb_apr.click()
-time.sleep(1)
+time.sleep(8)
 
 submit_button = driver.find_element(By.XPATH, '//*[@id="registrationForm"]/button')
 submit_button.click()
@@ -135,3 +135,4 @@ order_button = driver.find_element(By.XPATH, '//*[@id="buy-cart-button"]')
 order_button.click()
 
 time.sleep(10)
+driver.quit()
